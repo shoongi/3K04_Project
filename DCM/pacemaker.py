@@ -278,10 +278,14 @@ def open_register():
 
     #store registered name and password in variables
     register_username = StringVar()
+    username_label = customtkinter.CTkLabel(master=frame,text="Username")
+    username_label.pack(pady=0, padx=10)
     username_entry = customtkinter.CTkEntry(master=frame, placeholder_text="Create a username..", textvariable = register_username)
     username_entry.pack(pady=12, padx=10)
 
     register_password = StringVar()
+    password_label = customtkinter.CTkLabel(master=frame,text="Password")
+    password_label.pack(pady=0, padx=10)
     password_entry = customtkinter.CTkEntry(master=frame, placeholder_text="Create a password", show = "*", textvariable = register_password)
     password_entry.pack(pady=12, padx=10)
 
