@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'Pacemaker'.
  *
- * Model version                  : 5.33
+ * Model version                  : 5.35
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Sat Oct 22 21:42:52 2022
+ * C/C++ source code generated on : Sun Oct 23 17:36:22 2022
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -41,6 +41,8 @@
 /* Block signals (default storage) */
 typedef struct {
   real_T PACING_REF_PWM;               /* '<S2>/PACING_REF_PWM' */
+  real_T ATR_CMP_REF_PWM;              /* '<S9>/Chart' */
+  real_T VENT_CMP_REF_PWM;             /* '<S8>/Chart' */
   real_T PACING_REF_PWM_n;             /* '<S7>/Chart' */
   real_T PACING_REF_PWM_k;             /* '<S6>/Chart' */
   boolean_T PACE_CHARGE_CTRL;          /* '<S2>/PACE_CHARGE_CTRL' */
@@ -49,19 +51,31 @@ typedef struct {
   boolean_T PACE_GND_CTRL;             /* '<S2>/PACE_GND_CTRL' */
   boolean_T ATR_GND_CTRL;              /* '<S2>/ATR_GND_CTRL' */
   boolean_T ATR_PACE_CTRL;             /* '<S2>/ATR_PACE_CTRL' */
+  boolean_T FRONTEND_CTRL;             /* '<S2>/FRONTEND_CTRL' */
 } B_Pacemaker_T;
 
 /* Block states (default storage) for system '<Root>' */
 typedef struct {
-  freedomk64f_DigitalWrite_Pace_T obj; /* '<S5>/Digital Write5' */
+  freedomk64f_DigitalRead_Pacem_T obj; /* '<S3>/Digital Read1' */
+  freedomk64f_DigitalRead_Pacem_T obj_i;/* '<S3>/Digital Read' */
+  freedomk64f_DigitalWrite_Pace_T obj_j;/* '<S5>/Digital Write6' */
+  freedomk64f_DigitalWrite_Pace_T obj_j3;/* '<S5>/Digital Write5' */
   freedomk64f_DigitalWrite_Pace_T obj_h;/* '<S5>/Digital Write4' */
   freedomk64f_DigitalWrite_Pace_T obj_b;/* '<S5>/Digital Write3' */
-  freedomk64f_DigitalWrite_Pace_T obj_j;/* '<S5>/Digital Write2' */
+  freedomk64f_DigitalWrite_Pace_T obj_jz;/* '<S5>/Digital Write2' */
   freedomk64f_DigitalWrite_Pace_T obj_d;/* '<S5>/Digital Write1' */
   freedomk64f_DigitalWrite_Pace_T obj_e;/* '<S5>/Digital Write' */
+  freedomk64f_PWMOutput_Pacemak_T obj_f;/* '<S5>/PWM Output2' */
+  freedomk64f_PWMOutput_Pacemak_T obj_dp;/* '<S5>/PWM Output1' */
   freedomk64f_PWMOutput_Pacemak_T obj_p;/* '<S5>/PWM Output' */
-  uint32_T temporalCounter_i1;         /* '<S7>/Chart' */
+  uint32_T temporalCounter_i1;         /* '<S9>/Chart' */
+  uint32_T temporalCounter_i1_f;       /* '<S8>/Chart' */
+  uint32_T temporalCounter_i1_b;       /* '<S7>/Chart' */
   uint32_T temporalCounter_i1_a;       /* '<S6>/Chart' */
+  uint8_T is_active_c4_Pacemaker;      /* '<S9>/Chart' */
+  uint8_T is_c4_Pacemaker;             /* '<S9>/Chart' */
+  uint8_T is_active_c2_Pacemaker;      /* '<S8>/Chart' */
+  uint8_T is_c2_Pacemaker;             /* '<S8>/Chart' */
   uint8_T is_active_c3_Pacemaker;      /* '<S7>/Chart' */
   uint8_T is_c3_Pacemaker;             /* '<S7>/Chart' */
   uint8_T is_active_c1_Pacemaker;      /* '<S6>/Chart' */
@@ -74,10 +88,16 @@ struct P_Pacemaker_T_ {
                                         * Referenced by: '<S1>/Constant'
                                         */
   Pacemaker_Mode ModeSelect4_Value;    /* Mask Parameter: ModeSelect4_Value
-                                        * Referenced by: '<S22>/Constant'
+                                        * Referenced by: '<S26>/Constant'
                                         */
   Pacemaker_Mode ModeSelect2_Value;    /* Mask Parameter: ModeSelect2_Value
-                                        * Referenced by: '<S20>/Constant'
+                                        * Referenced by: '<S24>/Constant'
+                                        */
+  real_T DigitalRead_SampleTime;       /* Expression: SampleTime
+                                        * Referenced by: '<S3>/Digital Read'
+                                        */
+  real_T DigitalRead1_SampleTime;      /* Expression: SampleTime
+                                        * Referenced by: '<S3>/Digital Read1'
                                         */
   real_T LRL_Value;                    /* Expression: 60
                                         * Referenced by: '<S3>/LRL'
@@ -96,6 +116,18 @@ struct P_Pacemaker_T_ {
                                         */
   real_T ATR_PW_Value;                 /* Expression: 3
                                         * Referenced by: '<S3>/ATR_PW'
+                                        */
+  real_T ATR_SENSITIVITY_Value;        /* Expression: 1
+                                        * Referenced by: '<S3>/ATR_SENSITIVITY'
+                                        */
+  real_T ARP_Value;                    /* Expression: 1
+                                        * Referenced by: '<S3>/ARP'
+                                        */
+  real_T VENT_SENSITIVITY_Value;       /* Expression: 1
+                                        * Referenced by: '<S3>/VENT_SENSITIVITY'
+                                        */
+  real_T VRP_Value;                    /* Expression: 1
+                                        * Referenced by: '<S3>/VRP'
                                         */
   real_T PACING_REF_PWM_InitialOutput;
                              /* Computed Parameter: PACING_REF_PWM_InitialOutput
@@ -125,6 +157,10 @@ struct P_Pacemaker_T_ {
                               /* Computed Parameter: ATR_PACE_CTRL_InitialOutput
                                * Referenced by: '<S2>/ATR_PACE_CTRL'
                                */
+  boolean_T FRONTEND_CTRL_InitialOutput;
+                              /* Computed Parameter: FRONTEND_CTRL_InitialOutput
+                               * Referenced by: '<S2>/FRONTEND_CTRL'
+                               */
 };
 
 /* Real-time Model Data Structure */
@@ -153,11 +189,9 @@ extern RT_MODEL_Pacemaker_T *const Pacemaker_M;
  * These blocks were eliminated from the model due to optimizations:
  *
  * Block '<S3>/ACT_THRESHOLD' : Unused code path elimination
- * Block '<S3>/ARP' : Unused code path elimination
  * Block '<S3>/ATR_DURATION' : Unused code path elimination
  * Block '<S3>/ATR_FALLBACK_MODE' : Unused code path elimination
  * Block '<S3>/ATR_FALLBACK_TIME' : Unused code path elimination
- * Block '<S3>/ATR_SENSITIVITY' : Unused code path elimination
  * Block '<S3>/DYN_AV_DELAY' : Unused code path elimination
  * Block '<S3>/FIXED_AV_DELAY' : Unused code path elimination
  * Block '<S3>/HYSTERESIS' : Unused code path elimination
@@ -169,8 +203,6 @@ extern RT_MODEL_Pacemaker_T *const Pacemaker_M;
  * Block '<S3>/RECOVERY_TIME' : Unused code path elimination
  * Block '<S3>/RESPONSE_FACTOR' : Unused code path elimination
  * Block '<S3>/SENSE_AV_DELAY_OFFSET' : Unused code path elimination
- * Block '<S3>/VENT_SENSITIVITY' : Unused code path elimination
- * Block '<S3>/VRP' : Unused code path elimination
  * Block '<S4>/Equal' : Unused code path elimination
  * Block '<S4>/Equal1' : Unused code path elimination
  * Block '<S4>/Equal10' : Unused code path elimination
@@ -187,22 +219,22 @@ extern RT_MODEL_Pacemaker_T *const Pacemaker_M;
  * Block '<S4>/Equal7' : Unused code path elimination
  * Block '<S4>/Equal8' : Unused code path elimination
  * Block '<S4>/Equal9' : Unused code path elimination
- * Block '<S10>/Constant' : Unused code path elimination
- * Block '<S11>/Constant' : Unused code path elimination
- * Block '<S12>/Constant' : Unused code path elimination
- * Block '<S13>/Constant' : Unused code path elimination
  * Block '<S14>/Constant' : Unused code path elimination
  * Block '<S15>/Constant' : Unused code path elimination
  * Block '<S16>/Constant' : Unused code path elimination
  * Block '<S17>/Constant' : Unused code path elimination
  * Block '<S18>/Constant' : Unused code path elimination
  * Block '<S19>/Constant' : Unused code path elimination
+ * Block '<S20>/Constant' : Unused code path elimination
  * Block '<S21>/Constant' : Unused code path elimination
+ * Block '<S22>/Constant' : Unused code path elimination
  * Block '<S23>/Constant' : Unused code path elimination
- * Block '<S24>/Constant' : Unused code path elimination
  * Block '<S25>/Constant' : Unused code path elimination
- * Block '<S26>/Constant' : Unused code path elimination
  * Block '<S27>/Constant' : Unused code path elimination
+ * Block '<S28>/Constant' : Unused code path elimination
+ * Block '<S29>/Constant' : Unused code path elimination
+ * Block '<S30>/Constant' : Unused code path elimination
+ * Block '<S31>/Constant' : Unused code path elimination
  */
 
 /*-
@@ -227,26 +259,30 @@ extern RT_MODEL_Pacemaker_T *const Pacemaker_M;
  * '<S5>'   : 'Pacemaker/Subsystem Reference1'
  * '<S6>'   : 'Pacemaker/Modes/Subsystem Reference'
  * '<S7>'   : 'Pacemaker/Modes/Subsystem Reference1'
- * '<S8>'   : 'Pacemaker/Modes/Subsystem Reference/Chart'
- * '<S9>'   : 'Pacemaker/Modes/Subsystem Reference1/Chart'
- * '<S10>'  : 'Pacemaker/Subsystem Reference/Mode Select'
- * '<S11>'  : 'Pacemaker/Subsystem Reference/Mode Select1'
- * '<S12>'  : 'Pacemaker/Subsystem Reference/Mode Select10'
- * '<S13>'  : 'Pacemaker/Subsystem Reference/Mode Select11'
- * '<S14>'  : 'Pacemaker/Subsystem Reference/Mode Select12'
- * '<S15>'  : 'Pacemaker/Subsystem Reference/Mode Select13'
- * '<S16>'  : 'Pacemaker/Subsystem Reference/Mode Select14'
- * '<S17>'  : 'Pacemaker/Subsystem Reference/Mode Select15'
- * '<S18>'  : 'Pacemaker/Subsystem Reference/Mode Select16'
- * '<S19>'  : 'Pacemaker/Subsystem Reference/Mode Select17'
- * '<S20>'  : 'Pacemaker/Subsystem Reference/Mode Select2'
- * '<S21>'  : 'Pacemaker/Subsystem Reference/Mode Select3'
- * '<S22>'  : 'Pacemaker/Subsystem Reference/Mode Select4'
- * '<S23>'  : 'Pacemaker/Subsystem Reference/Mode Select5'
- * '<S24>'  : 'Pacemaker/Subsystem Reference/Mode Select6'
- * '<S25>'  : 'Pacemaker/Subsystem Reference/Mode Select7'
- * '<S26>'  : 'Pacemaker/Subsystem Reference/Mode Select8'
- * '<S27>'  : 'Pacemaker/Subsystem Reference/Mode Select9'
+ * '<S8>'   : 'Pacemaker/Modes/Subsystem Reference2'
+ * '<S9>'   : 'Pacemaker/Modes/Subsystem Reference3'
+ * '<S10>'  : 'Pacemaker/Modes/Subsystem Reference/Chart'
+ * '<S11>'  : 'Pacemaker/Modes/Subsystem Reference1/Chart'
+ * '<S12>'  : 'Pacemaker/Modes/Subsystem Reference2/Chart'
+ * '<S13>'  : 'Pacemaker/Modes/Subsystem Reference3/Chart'
+ * '<S14>'  : 'Pacemaker/Subsystem Reference/Mode Select'
+ * '<S15>'  : 'Pacemaker/Subsystem Reference/Mode Select1'
+ * '<S16>'  : 'Pacemaker/Subsystem Reference/Mode Select10'
+ * '<S17>'  : 'Pacemaker/Subsystem Reference/Mode Select11'
+ * '<S18>'  : 'Pacemaker/Subsystem Reference/Mode Select12'
+ * '<S19>'  : 'Pacemaker/Subsystem Reference/Mode Select13'
+ * '<S20>'  : 'Pacemaker/Subsystem Reference/Mode Select14'
+ * '<S21>'  : 'Pacemaker/Subsystem Reference/Mode Select15'
+ * '<S22>'  : 'Pacemaker/Subsystem Reference/Mode Select16'
+ * '<S23>'  : 'Pacemaker/Subsystem Reference/Mode Select17'
+ * '<S24>'  : 'Pacemaker/Subsystem Reference/Mode Select2'
+ * '<S25>'  : 'Pacemaker/Subsystem Reference/Mode Select3'
+ * '<S26>'  : 'Pacemaker/Subsystem Reference/Mode Select4'
+ * '<S27>'  : 'Pacemaker/Subsystem Reference/Mode Select5'
+ * '<S28>'  : 'Pacemaker/Subsystem Reference/Mode Select6'
+ * '<S29>'  : 'Pacemaker/Subsystem Reference/Mode Select7'
+ * '<S30>'  : 'Pacemaker/Subsystem Reference/Mode Select8'
+ * '<S31>'  : 'Pacemaker/Subsystem Reference/Mode Select9'
  */
 #endif                                 /* RTW_HEADER_Pacemaker_h_ */
 

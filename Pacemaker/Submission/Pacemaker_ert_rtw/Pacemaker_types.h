@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'Pacemaker'.
  *
- * Model version                  : 5.33
+ * Model version                  : 5.35
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Sat Oct 22 21:42:52 2022
+ * C/C++ source code generated on : Sun Oct 23 17:36:22 2022
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -49,7 +49,7 @@ typedef enum {
 
 #endif
 
-/* Custom Type definition for MATLABSystem: '<S5>/PWM Output' */
+/* Custom Type definition for MATLABSystem: '<S5>/PWM Output2' */
 #include "MW_SVD.h"
 #ifndef struct_tag_0QIIqIWUIOhUbf1p9QN9pB
 #define struct_tag_0QIIqIWUIOhUbf1p9QN9pB
@@ -67,6 +67,28 @@ struct tag_0QIIqIWUIOhUbf1p9QN9pB
 typedef struct tag_0QIIqIWUIOhUbf1p9QN9pB b_freedomk64f_Hardware_Pacema_T;
 
 #endif                             /* typedef_b_freedomk64f_Hardware_Pacema_T */
+
+#ifndef struct_tag_q6HQSF2nXq6EjCNj0vbuLD
+#define struct_tag_q6HQSF2nXq6EjCNj0vbuLD
+
+struct tag_q6HQSF2nXq6EjCNj0vbuLD
+{
+  boolean_T matlabCodegenIsDeleted;
+  int32_T isInitialized;
+  boolean_T isSetupComplete;
+  b_freedomk64f_Hardware_Pacema_T Hw;
+  MW_Handle_Type MW_DIGITALIO_HANDLE;
+  real_T SampleTime;
+};
+
+#endif                                 /* struct_tag_q6HQSF2nXq6EjCNj0vbuLD */
+
+#ifndef typedef_freedomk64f_DigitalRead_Pacem_T
+#define typedef_freedomk64f_DigitalRead_Pacem_T
+
+typedef struct tag_q6HQSF2nXq6EjCNj0vbuLD freedomk64f_DigitalRead_Pacem_T;
+
+#endif                             /* typedef_freedomk64f_DigitalRead_Pacem_T */
 
 #ifndef struct_tag_EkIWEs70Gs0LyfeXELZ2TC
 #define struct_tag_EkIWEs70Gs0LyfeXELZ2TC
