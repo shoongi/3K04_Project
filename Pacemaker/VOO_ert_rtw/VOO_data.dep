@@ -1,0 +1,25 @@
+VOO_data.o: C:/3K04_Lab/3K04_Project/Pacemaker/VOO_ert_rtw/VOO_data.c \
+ C:/3K04_Lab/3K04_Project/Pacemaker/VOO_ert_rtw/VOO.h \
+ C:/3K04_Lab/3K04_Project/Pacemaker/VOO_ert_rtw/rtwtypes.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_digitalIO.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_SVD.h \
+ C:/3K04_Lab/3K04_Project/Pacemaker/VOO_ert_rtw/rtwtypes.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_PWM.h \
+ C:/3K04_Lab/3K04_Project/Pacemaker/VOO_ert_rtw/VOO_types.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_SVD.h
+
+C:/3K04_Lab/3K04_Project/Pacemaker/VOO_ert_rtw/VOO.h:
+
+C:/3K04_Lab/3K04_Project/Pacemaker/VOO_ert_rtw/rtwtypes.h:
+
+C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_digitalIO.h:
+
+C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_SVD.h:
+
+C:/3K04_Lab/3K04_Project/Pacemaker/VOO_ert_rtw/rtwtypes.h:
+
+C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_PWM.h:
+
+C:/3K04_Lab/3K04_Project/Pacemaker/VOO_ert_rtw/VOO_types.h:
+
+C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_SVD.h:
