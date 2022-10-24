@@ -1,3 +1,18 @@
 MECHTRON 3K04 Pacemaker Project
+400338538 Ali Raza
+400311174 Ty Greenwood
+400303704 Ivan Lange
+400312914 Isaac Shoong
+400312845 Michael Golendukhin
 
+October 23, 2022
+
+PACEMAKER FILE:
+3K04_Project -> Pacemaker -> Submission
+
+To run the Pacemaker file, navigate to filepath above in Matlab, and click on the Pacemaker.slx
+file. This file contains the subsystems for the stateflows. To see the stateflows for AAI, VVI, 
+AOO, VOO, enter into the Modes subsystem. The Requirements table is in the same filepath.
+
+DCM FILE:
 To run the DCM, please run the pacemaker.py file
