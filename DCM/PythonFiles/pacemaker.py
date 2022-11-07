@@ -413,7 +413,7 @@ def welcomePage():
     quit_button.pack(pady=10, padx=8)
 
     #picture details
-    pic = Image.open(r"heart.png")
+    pic = Image.open(r"DCM\heart.png")
     heart = pic.resize((50,50), Image.ANTIALIAS)
     small_heart = pic.resize((20,20), Image.ANTIALIAS)
     small_pixel_heart = ImageTk.PhotoImage(small_heart)
