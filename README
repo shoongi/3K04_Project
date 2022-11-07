@@ -16,3 +16,4 @@ AOO, VOO, enter into the Modes subsystem. The Requirements table is in the same 
 
 DCM FILE:
 To run the DCM, please run the pacemaker.py file
+Make sure Python Version > 3.10 along with the corresponding libraries are installed
