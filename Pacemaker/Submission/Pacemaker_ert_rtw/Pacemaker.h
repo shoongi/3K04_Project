@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'Pacemaker'.
  *
- * Model version                  : 5.35
+ * Model version                  : 5.36
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Sun Oct 23 17:36:22 2022
+ * C/C++ source code generated on : Sun Oct 23 20:37:10 2022
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -41,9 +41,11 @@
 /* Block signals (default storage) */
 typedef struct {
   real_T PACING_REF_PWM;               /* '<S2>/PACING_REF_PWM' */
+  real_T PACING_REF_PWM_n;             /* '<S9>/Chart' */
   real_T ATR_CMP_REF_PWM;              /* '<S9>/Chart' */
+  real_T PACING_REF_PWM_l;             /* '<S8>/Chart' */
   real_T VENT_CMP_REF_PWM;             /* '<S8>/Chart' */
-  real_T PACING_REF_PWM_n;             /* '<S7>/Chart' */
+  real_T PACING_REF_PWM_na;            /* '<S7>/Chart' */
   real_T PACING_REF_PWM_k;             /* '<S6>/Chart' */
   boolean_T PACE_CHARGE_CTRL;          /* '<S2>/PACE_CHARGE_CTRL' */
   boolean_T VENT_GND_CTRL;             /* '<S2>/VENT_GND_CTRL' */
@@ -52,6 +54,20 @@ typedef struct {
   boolean_T ATR_GND_CTRL;              /* '<S2>/ATR_GND_CTRL' */
   boolean_T ATR_PACE_CTRL;             /* '<S2>/ATR_PACE_CTRL' */
   boolean_T FRONTEND_CTRL;             /* '<S2>/FRONTEND_CTRL' */
+  boolean_T ATR_GND_CTRL_g;            /* '<S9>/Chart' */
+  boolean_T ATR_PACE_CTRL_j;           /* '<S9>/Chart' */
+  boolean_T PACE_CHARGE_CTRL_j;        /* '<S9>/Chart' */
+  boolean_T VENT_GND_CTRL_i;           /* '<S9>/Chart' */
+  boolean_T VENT_PACE_CTRL_k;          /* '<S9>/Chart' */
+  boolean_T PACE_GND_CTRL_f;           /* '<S9>/Chart' */
+  boolean_T FRONTEND_CTRL_p;           /* '<S9>/Chart' */
+  boolean_T PACE_CHARGE_CTRL_h;        /* '<S8>/Chart' */
+  boolean_T VENT_PACE_CTRL_m;          /* '<S8>/Chart' */
+  boolean_T VENT_GND_CTRL_n;           /* '<S8>/Chart' */
+  boolean_T PACE_GND_CTRL_j;           /* '<S8>/Chart' */
+  boolean_T ATR_GND_CTRL_i;            /* '<S8>/Chart' */
+  boolean_T ATR_PACE_CTRL_i;           /* '<S8>/Chart' */
+  boolean_T FRONTEND_CTRL_i;           /* '<S8>/Chart' */
 } B_Pacemaker_T;
 
 /* Block states (default storage) for system '<Root>' */
@@ -93,6 +109,12 @@ struct P_Pacemaker_T_ {
   Pacemaker_Mode ModeSelect2_Value;    /* Mask Parameter: ModeSelect2_Value
                                         * Referenced by: '<S24>/Constant'
                                         */
+  Pacemaker_Mode ModeSelect3_Value;    /* Mask Parameter: ModeSelect3_Value
+                                        * Referenced by: '<S25>/Constant'
+                                        */
+  Pacemaker_Mode ModeSelect5_Value;    /* Mask Parameter: ModeSelect5_Value
+                                        * Referenced by: '<S27>/Constant'
+                                        */
   real_T DigitalRead_SampleTime;       /* Expression: SampleTime
                                         * Referenced by: '<S3>/Digital Read'
                                         */
@@ -117,16 +139,16 @@ struct P_Pacemaker_T_ {
   real_T ATR_PW_Value;                 /* Expression: 3
                                         * Referenced by: '<S3>/ATR_PW'
                                         */
-  real_T ATR_SENSITIVITY_Value;        /* Expression: 1
+  real_T ATR_SENSITIVITY_Value;        /* Expression: 2
                                         * Referenced by: '<S3>/ATR_SENSITIVITY'
                                         */
-  real_T ARP_Value;                    /* Expression: 1
+  real_T ARP_Value;                    /* Expression: 250
                                         * Referenced by: '<S3>/ARP'
                                         */
-  real_T VENT_SENSITIVITY_Value;       /* Expression: 1
+  real_T VENT_SENSITIVITY_Value;       /* Expression: 2
                                         * Referenced by: '<S3>/VENT_SENSITIVITY'
                                         */
-  real_T VRP_Value;                    /* Expression: 1
+  real_T VRP_Value;                    /* Expression: 320
                                         * Referenced by: '<S3>/VRP'
                                         */
   real_T PACING_REF_PWM_InitialOutput;
@@ -213,8 +235,6 @@ extern RT_MODEL_Pacemaker_T *const Pacemaker_M;
  * Block '<S4>/Equal15' : Unused code path elimination
  * Block '<S4>/Equal16' : Unused code path elimination
  * Block '<S4>/Equal17' : Unused code path elimination
- * Block '<S4>/Equal3' : Unused code path elimination
- * Block '<S4>/Equal5' : Unused code path elimination
  * Block '<S4>/Equal6' : Unused code path elimination
  * Block '<S4>/Equal7' : Unused code path elimination
  * Block '<S4>/Equal8' : Unused code path elimination
@@ -229,8 +249,6 @@ extern RT_MODEL_Pacemaker_T *const Pacemaker_M;
  * Block '<S21>/Constant' : Unused code path elimination
  * Block '<S22>/Constant' : Unused code path elimination
  * Block '<S23>/Constant' : Unused code path elimination
- * Block '<S25>/Constant' : Unused code path elimination
- * Block '<S27>/Constant' : Unused code path elimination
  * Block '<S28>/Constant' : Unused code path elimination
  * Block '<S29>/Constant' : Unused code path elimination
  * Block '<S30>/Constant' : Unused code path elimination

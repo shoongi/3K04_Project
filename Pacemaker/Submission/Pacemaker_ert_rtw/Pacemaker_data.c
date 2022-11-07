@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'Pacemaker'.
  *
- * Model version                  : 5.35
+ * Model version                  : 5.36
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Sun Oct 23 17:36:22 2022
+ * C/C++ source code generated on : Sun Oct 23 20:37:10 2022
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -24,7 +24,7 @@ P_Pacemaker_T Pacemaker_P = {
   /* Mask Parameter: ModeSelect_Value
    * Referenced by: '<S1>/Constant'
    */
-  VOO,
+  AAI,
 
   /* Mask Parameter: ModeSelect4_Value
    * Referenced by: '<S26>/Constant'
@@ -35,6 +35,16 @@ P_Pacemaker_T Pacemaker_P = {
    * Referenced by: '<S24>/Constant'
    */
   AOO,
+
+  /* Mask Parameter: ModeSelect3_Value
+   * Referenced by: '<S25>/Constant'
+   */
+  AAI,
+
+  /* Mask Parameter: ModeSelect5_Value
+   * Referenced by: '<S27>/Constant'
+   */
+  VVI,
 
   /* Expression: SampleTime
    * Referenced by: '<S3>/Digital Read'
@@ -76,25 +86,25 @@ P_Pacemaker_T Pacemaker_P = {
    */
   3.0,
 
-  /* Expression: 1
+  /* Expression: 2
    * Referenced by: '<S3>/ATR_SENSITIVITY'
    */
-  1.0,
+  2.0,
 
-  /* Expression: 1
+  /* Expression: 250
    * Referenced by: '<S3>/ARP'
    */
-  1.0,
+  250.0,
 
-  /* Expression: 1
+  /* Expression: 2
    * Referenced by: '<S3>/VENT_SENSITIVITY'
    */
-  1.0,
+  2.0,
 
-  /* Expression: 1
+  /* Expression: 320
    * Referenced by: '<S3>/VRP'
    */
-  1.0,
+  320.0,
 
   /* Computed Parameter: PACING_REF_PWM_InitialOutput
    * Referenced by: '<S2>/PACING_REF_PWM'

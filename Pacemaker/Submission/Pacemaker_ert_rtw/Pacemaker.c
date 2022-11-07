@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'Pacemaker'.
  *
- * Model version                  : 5.35
+ * Model version                  : 5.36
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Sun Oct 23 17:36:22 2022
+ * C/C++ source code generated on : Sun Oct 23 20:37:10 2022
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -82,7 +82,7 @@ void Pacemaker_step(void)
 
       /* Merge: '<S2>/VENT_PACE_CTRL' */
       Pacemaker_B.VENT_PACE_CTRL = false;
-      Pacemaker_B.PACING_REF_PWM_n = Pacemaker_P.VENT_AMP_Value / 5.0 * 100.0;
+      Pacemaker_B.PACING_REF_PWM_na = Pacemaker_P.VENT_AMP_Value / 5.0 * 100.0;
 
       /* Merge: '<S2>/PACE_CHARGE_CTRL' incorporates:
        *  Constant: '<S3>/VENT_AMP'
@@ -155,7 +155,7 @@ void Pacemaker_step(void)
 
         /* Merge: '<S2>/VENT_PACE_CTRL' */
         Pacemaker_B.VENT_PACE_CTRL = false;
-        Pacemaker_B.PACING_REF_PWM_n = Pacemaker_P.VENT_AMP_Value / 5.0 * 100.0;
+        Pacemaker_B.PACING_REF_PWM_na = Pacemaker_P.VENT_AMP_Value / 5.0 * 100.0;
 
         /* Merge: '<S2>/PACE_CHARGE_CTRL' incorporates:
          *  Constant: '<S3>/VENT_AMP'
@@ -172,7 +172,7 @@ void Pacemaker_step(void)
     /* Merge: '<S2>/PACING_REF_PWM' incorporates:
      *  SignalConversion generated from: '<S7>/PACING_REF_PWM'
      */
-    Pacemaker_B.PACING_REF_PWM = Pacemaker_B.PACING_REF_PWM_n;
+    Pacemaker_B.PACING_REF_PWM = Pacemaker_B.PACING_REF_PWM_na;
   }
 
   /* End of RelationalOperator: '<S4>/Equal4' */
@@ -308,174 +308,146 @@ void Pacemaker_step(void)
 
   rtb_AMP_CMP_DETECT_0 = MW_digitalIO_read(Pacemaker_DW.obj.MW_DIGITALIO_HANDLE);
 
-  /* Chart: '<S9>/Chart' incorporates:
-   *  Constant: '<S3>/ARP'
-   *  Constant: '<S3>/ATR_PW'
-   *  Constant: '<S3>/ATR_SENSITIVITY'
-   *  Constant: '<S3>/LRL'
-   *  MATLABSystem: '<S3>/Digital Read1'
+  /* Outputs for Enabled SubSystem: '<S2>/Subsystem Reference3' incorporates:
+   *  EnablePort: '<S9>/Enable'
    */
-  if (Pacemaker_DW.temporalCounter_i1 < MAX_uint32_T) {
-    Pacemaker_DW.temporalCounter_i1++;
-  }
+  /* RelationalOperator: '<S4>/Equal3' incorporates:
+   *  Constant: '<S1>/Constant'
+   *  Constant: '<S25>/Constant'
+   */
+  if (Pacemaker_P.ModeSelect_Value == Pacemaker_P.ModeSelect3_Value) {
+    /* Chart: '<S9>/Chart' incorporates:
+     *  Constant: '<S3>/ARP'
+     *  Constant: '<S3>/ATR_AMP'
+     *  Constant: '<S3>/ATR_PW'
+     *  Constant: '<S3>/ATR_SENSITIVITY'
+     *  Constant: '<S3>/LRL'
+     *  MATLABSystem: '<S3>/Digital Read1'
+     */
+    if (Pacemaker_DW.temporalCounter_i1 < MAX_uint32_T) {
+      Pacemaker_DW.temporalCounter_i1++;
+    }
 
-  if (Pacemaker_DW.is_active_c4_Pacemaker == 0U) {
-    Pacemaker_DW.is_active_c4_Pacemaker = 1U;
-    Pacemaker_DW.is_c4_Pacemaker = Pacemaker_IN_AAI_Charging_C22;
-    Pacemaker_DW.temporalCounter_i1 = 0U;
+    if (Pacemaker_DW.is_active_c4_Pacemaker == 0U) {
+      Pacemaker_DW.is_active_c4_Pacemaker = 1U;
+      Pacemaker_DW.is_c4_Pacemaker = Pacemaker_IN_AAI_Charging_C22;
+      Pacemaker_DW.temporalCounter_i1 = 0U;
+      Pacemaker_B.VENT_PACE_CTRL_k = false;
+      Pacemaker_B.ATR_PACE_CTRL_j = false;
+      Pacemaker_B.PACE_CHARGE_CTRL_j = true;
+      Pacemaker_B.PACING_REF_PWM_n = Pacemaker_P.ATR_AMP_Value * 20.0;
+      Pacemaker_B.PACE_GND_CTRL_f = true;
+      Pacemaker_B.VENT_GND_CTRL_i = false;
+      Pacemaker_B.ATR_GND_CTRL_g = true;
+    } else {
+      switch (Pacemaker_DW.is_c4_Pacemaker) {
+       case Pacemaker_IN_AAI_Charging_C22:
+        Pacemaker_B.VENT_PACE_CTRL_k = false;
+        Pacemaker_B.ATR_PACE_CTRL_j = false;
+        Pacemaker_B.PACE_CHARGE_CTRL_j = true;
+        Pacemaker_B.PACE_GND_CTRL_f = true;
+        Pacemaker_B.VENT_GND_CTRL_i = false;
+        Pacemaker_B.ATR_GND_CTRL_g = true;
+        if (Pacemaker_DW.temporalCounter_i1 >= (uint32_T)ceil
+            (Pacemaker_P.ARP_Value)) {
+          Pacemaker_DW.is_c4_Pacemaker = Pacemaker_IN_AAI_Sensing;
+          Pacemaker_DW.temporalCounter_i1 = 0U;
+          Pacemaker_B.FRONTEND_CTRL_p = true;
+          Pacemaker_B.ATR_CMP_REF_PWM = Pacemaker_P.ATR_SENSITIVITY_Value * 30.0;
+        }
+        break;
 
-    /* Merge: '<S2>/VENT_PACE_CTRL' */
-    Pacemaker_B.VENT_PACE_CTRL = false;
+       case Pacemaker_IN_AAI_Pacing:
+        Pacemaker_B.PACE_CHARGE_CTRL_j = false;
+        Pacemaker_B.PACE_GND_CTRL_f = true;
+        Pacemaker_B.VENT_PACE_CTRL_k = false;
+        Pacemaker_B.VENT_GND_CTRL_i = false;
+        Pacemaker_B.ATR_GND_CTRL_g = false;
+        Pacemaker_B.ATR_PACE_CTRL_j = true;
+        if (Pacemaker_DW.temporalCounter_i1 >= (uint32_T)ceil
+            (Pacemaker_P.ATR_PW_Value)) {
+          Pacemaker_DW.is_c4_Pacemaker = Pacemaker_IN_AAI_Charging_C22;
+          Pacemaker_DW.temporalCounter_i1 = 0U;
+          Pacemaker_B.ATR_PACE_CTRL_j = false;
+          Pacemaker_B.PACE_CHARGE_CTRL_j = true;
+          Pacemaker_B.PACING_REF_PWM_n = Pacemaker_P.ATR_AMP_Value * 20.0;
+          Pacemaker_B.ATR_GND_CTRL_g = true;
+        }
+        break;
 
-    /* Merge: '<S2>/ATR_PACE_CTRL' */
-    Pacemaker_B.ATR_PACE_CTRL = false;
+       default:
+        /* case IN_AAI_Sensing: */
+        Pacemaker_B.FRONTEND_CTRL_p = true;
+        if (rtb_AMP_CMP_DETECT_0) {
+          Pacemaker_DW.is_c4_Pacemaker = Pacemaker_IN_AAI_Charging_C22;
+          Pacemaker_DW.temporalCounter_i1 = 0U;
+          Pacemaker_B.VENT_PACE_CTRL_k = false;
+          Pacemaker_B.ATR_PACE_CTRL_j = false;
+          Pacemaker_B.PACE_CHARGE_CTRL_j = true;
+          Pacemaker_B.PACING_REF_PWM_n = Pacemaker_P.ATR_AMP_Value * 20.0;
+          Pacemaker_B.PACE_GND_CTRL_f = true;
+          Pacemaker_B.VENT_GND_CTRL_i = false;
+          Pacemaker_B.ATR_GND_CTRL_g = true;
+        } else if (Pacemaker_DW.temporalCounter_i1 >= (uint32_T)ceil(60000.0 /
+                    Pacemaker_P.LRL_Value - Pacemaker_P.ARP_Value)) {
+          Pacemaker_DW.is_c4_Pacemaker = Pacemaker_IN_AAI_Pacing;
+          Pacemaker_DW.temporalCounter_i1 = 0U;
+          Pacemaker_B.PACE_CHARGE_CTRL_j = false;
+          Pacemaker_B.PACE_GND_CTRL_f = true;
+          Pacemaker_B.VENT_PACE_CTRL_k = false;
+          Pacemaker_B.VENT_GND_CTRL_i = false;
+          Pacemaker_B.ATR_GND_CTRL_g = false;
+          Pacemaker_B.ATR_PACE_CTRL_j = true;
+        }
+        break;
+      }
+    }
 
-    /* Merge: '<S2>/PACE_CHARGE_CTRL' */
-    Pacemaker_B.PACE_CHARGE_CTRL = true;
+    /* End of Chart: '<S9>/Chart' */
+
+    /* Merge: '<S2>/ATR_GND_CTRL' incorporates:
+     *  SignalConversion generated from: '<S9>/ATR_GND_CTRL'
+     */
+    Pacemaker_B.ATR_GND_CTRL = Pacemaker_B.ATR_GND_CTRL_g;
+
+    /* Merge: '<S2>/ATR_PACE_CTRL' incorporates:
+     *  SignalConversion generated from: '<S9>/ATR_PACE_CTRL'
+     */
+    Pacemaker_B.ATR_PACE_CTRL = Pacemaker_B.ATR_PACE_CTRL_j;
+
+    /* Merge: '<S2>/FRONTEND_CTRL' incorporates:
+     *  SignalConversion generated from: '<S9>/FRONTEND_CTRL'
+     */
+    Pacemaker_B.FRONTEND_CTRL = Pacemaker_B.FRONTEND_CTRL_p;
+
+    /* Merge: '<S2>/PACE_CHARGE_CTRL' incorporates:
+     *  SignalConversion generated from: '<S9>/PACE_CHARGE_CTRL'
+     */
+    Pacemaker_B.PACE_CHARGE_CTRL = Pacemaker_B.PACE_CHARGE_CTRL_j;
+
+    /* Merge: '<S2>/PACE_GND_CTRL' incorporates:
+     *  SignalConversion generated from: '<S9>/PACE_GND_CTRL'
+     */
+    Pacemaker_B.PACE_GND_CTRL = Pacemaker_B.PACE_GND_CTRL_f;
 
     /* Merge: '<S2>/PACING_REF_PWM' incorporates:
-     *  Constant: '<S3>/ATR_AMP'
+     *  SignalConversion generated from: '<S9>/PACING_REF_PWM'
      */
-    Pacemaker_B.PACING_REF_PWM = Pacemaker_P.ATR_AMP_Value * 20.0;
+    Pacemaker_B.PACING_REF_PWM = Pacemaker_B.PACING_REF_PWM_n;
 
-    /* Merge: '<S2>/PACE_GND_CTRL' */
-    Pacemaker_B.PACE_GND_CTRL = true;
+    /* Merge: '<S2>/VENT_GND_CTRL' incorporates:
+     *  SignalConversion generated from: '<S9>/VENT_GND_CTRL'
+     */
+    Pacemaker_B.VENT_GND_CTRL = Pacemaker_B.VENT_GND_CTRL_i;
 
-    /* Merge: '<S2>/VENT_GND_CTRL' */
-    Pacemaker_B.VENT_GND_CTRL = false;
-
-    /* Merge: '<S2>/ATR_GND_CTRL' */
-    Pacemaker_B.ATR_GND_CTRL = true;
-  } else {
-    switch (Pacemaker_DW.is_c4_Pacemaker) {
-     case Pacemaker_IN_AAI_Charging_C22:
-      /* Merge: '<S2>/VENT_PACE_CTRL' */
-      Pacemaker_B.VENT_PACE_CTRL = false;
-
-      /* Merge: '<S2>/ATR_PACE_CTRL' */
-      Pacemaker_B.ATR_PACE_CTRL = false;
-
-      /* Merge: '<S2>/PACE_CHARGE_CTRL' */
-      Pacemaker_B.PACE_CHARGE_CTRL = true;
-
-      /* Merge: '<S2>/PACE_GND_CTRL' */
-      Pacemaker_B.PACE_GND_CTRL = true;
-
-      /* Merge: '<S2>/VENT_GND_CTRL' */
-      Pacemaker_B.VENT_GND_CTRL = false;
-
-      /* Merge: '<S2>/ATR_GND_CTRL' */
-      Pacemaker_B.ATR_GND_CTRL = true;
-      if (Pacemaker_DW.temporalCounter_i1 >= (uint32_T)ceil
-          (Pacemaker_P.ARP_Value)) {
-        Pacemaker_DW.is_c4_Pacemaker = Pacemaker_IN_AAI_Sensing;
-        Pacemaker_DW.temporalCounter_i1 = 0U;
-
-        /* Merge: '<S2>/FRONTEND_CTRL' */
-        Pacemaker_B.FRONTEND_CTRL = true;
-        Pacemaker_B.ATR_CMP_REF_PWM = Pacemaker_P.ATR_SENSITIVITY_Value * 30.0;
-      }
-      break;
-
-     case Pacemaker_IN_AAI_Pacing:
-      /* Merge: '<S2>/PACE_CHARGE_CTRL' */
-      Pacemaker_B.PACE_CHARGE_CTRL = false;
-
-      /* Merge: '<S2>/PACE_GND_CTRL' */
-      Pacemaker_B.PACE_GND_CTRL = true;
-
-      /* Merge: '<S2>/VENT_PACE_CTRL' */
-      Pacemaker_B.VENT_PACE_CTRL = false;
-
-      /* Merge: '<S2>/VENT_GND_CTRL' */
-      Pacemaker_B.VENT_GND_CTRL = false;
-
-      /* Merge: '<S2>/ATR_GND_CTRL' */
-      Pacemaker_B.ATR_GND_CTRL = false;
-
-      /* Merge: '<S2>/ATR_PACE_CTRL' */
-      Pacemaker_B.ATR_PACE_CTRL = true;
-      if (Pacemaker_DW.temporalCounter_i1 >= (uint32_T)ceil
-          (Pacemaker_P.ATR_PW_Value)) {
-        Pacemaker_DW.is_c4_Pacemaker = Pacemaker_IN_AAI_Charging_C22;
-        Pacemaker_DW.temporalCounter_i1 = 0U;
-
-        /* Merge: '<S2>/ATR_PACE_CTRL' */
-        Pacemaker_B.ATR_PACE_CTRL = false;
-
-        /* Merge: '<S2>/PACE_CHARGE_CTRL' */
-        Pacemaker_B.PACE_CHARGE_CTRL = true;
-
-        /* Merge: '<S2>/PACING_REF_PWM' incorporates:
-         *  Constant: '<S3>/ATR_AMP'
-         */
-        Pacemaker_B.PACING_REF_PWM = Pacemaker_P.ATR_AMP_Value * 20.0;
-
-        /* Merge: '<S2>/ATR_GND_CTRL' */
-        Pacemaker_B.ATR_GND_CTRL = true;
-      }
-      break;
-
-     default:
-      /* case IN_AAI_Sensing: */
-      if (rtb_AMP_CMP_DETECT_0) {
-        /* Merge: '<S2>/FRONTEND_CTRL' */
-        Pacemaker_B.FRONTEND_CTRL = false;
-        Pacemaker_DW.is_c4_Pacemaker = Pacemaker_IN_AAI_Charging_C22;
-        Pacemaker_DW.temporalCounter_i1 = 0U;
-
-        /* Merge: '<S2>/VENT_PACE_CTRL' */
-        Pacemaker_B.VENT_PACE_CTRL = false;
-
-        /* Merge: '<S2>/ATR_PACE_CTRL' */
-        Pacemaker_B.ATR_PACE_CTRL = false;
-
-        /* Merge: '<S2>/PACE_CHARGE_CTRL' */
-        Pacemaker_B.PACE_CHARGE_CTRL = true;
-
-        /* Merge: '<S2>/PACING_REF_PWM' incorporates:
-         *  Constant: '<S3>/ATR_AMP'
-         */
-        Pacemaker_B.PACING_REF_PWM = Pacemaker_P.ATR_AMP_Value * 20.0;
-
-        /* Merge: '<S2>/PACE_GND_CTRL' */
-        Pacemaker_B.PACE_GND_CTRL = true;
-
-        /* Merge: '<S2>/VENT_GND_CTRL' */
-        Pacemaker_B.VENT_GND_CTRL = false;
-
-        /* Merge: '<S2>/ATR_GND_CTRL' */
-        Pacemaker_B.ATR_GND_CTRL = true;
-      } else if (Pacemaker_DW.temporalCounter_i1 >= (uint32_T)ceil(60000.0 /
-                  Pacemaker_P.LRL_Value - Pacemaker_P.ARP_Value)) {
-        /* Merge: '<S2>/FRONTEND_CTRL' */
-        Pacemaker_B.FRONTEND_CTRL = false;
-        Pacemaker_DW.is_c4_Pacemaker = Pacemaker_IN_AAI_Pacing;
-        Pacemaker_DW.temporalCounter_i1 = 0U;
-
-        /* Merge: '<S2>/PACE_CHARGE_CTRL' */
-        Pacemaker_B.PACE_CHARGE_CTRL = false;
-
-        /* Merge: '<S2>/PACE_GND_CTRL' */
-        Pacemaker_B.PACE_GND_CTRL = true;
-
-        /* Merge: '<S2>/VENT_PACE_CTRL' */
-        Pacemaker_B.VENT_PACE_CTRL = false;
-
-        /* Merge: '<S2>/VENT_GND_CTRL' */
-        Pacemaker_B.VENT_GND_CTRL = false;
-
-        /* Merge: '<S2>/ATR_GND_CTRL' */
-        Pacemaker_B.ATR_GND_CTRL = false;
-
-        /* Merge: '<S2>/ATR_PACE_CTRL' */
-        Pacemaker_B.ATR_PACE_CTRL = true;
-      }
-      break;
-    }
+    /* Merge: '<S2>/VENT_PACE_CTRL' incorporates:
+     *  SignalConversion generated from: '<S9>/VENT_PACE_CTRL'
+     */
+    Pacemaker_B.VENT_PACE_CTRL = Pacemaker_B.VENT_PACE_CTRL_k;
   }
 
-  /* End of Chart: '<S9>/Chart' */
+  /* End of RelationalOperator: '<S4>/Equal3' */
+  /* End of Outputs for SubSystem: '<S2>/Subsystem Reference3' */
 
   /* MATLABSystem: '<S3>/Digital Read' */
   if (Pacemaker_DW.obj_i.SampleTime != Pacemaker_P.DigitalRead_SampleTime) {
@@ -485,174 +457,147 @@ void Pacemaker_step(void)
   rtb_AMP_CMP_DETECT_0 = MW_digitalIO_read
     (Pacemaker_DW.obj_i.MW_DIGITALIO_HANDLE);
 
-  /* Chart: '<S8>/Chart' incorporates:
-   *  Constant: '<S3>/LRL'
-   *  Constant: '<S3>/VENT_PW'
-   *  Constant: '<S3>/VENT_SENSITIVITY'
-   *  Constant: '<S3>/VRP'
-   *  MATLABSystem: '<S3>/Digital Read'
+  /* Outputs for Enabled SubSystem: '<S2>/Subsystem Reference2' incorporates:
+   *  EnablePort: '<S8>/Enable'
    */
-  if (Pacemaker_DW.temporalCounter_i1_f < MAX_uint32_T) {
-    Pacemaker_DW.temporalCounter_i1_f++;
-  }
+  /* RelationalOperator: '<S4>/Equal5' incorporates:
+   *  Constant: '<S1>/Constant'
+   *  Constant: '<S27>/Constant'
+   */
+  if (Pacemaker_P.ModeSelect_Value == Pacemaker_P.ModeSelect5_Value) {
+    /* Chart: '<S8>/Chart' incorporates:
+     *  Constant: '<S3>/LRL'
+     *  Constant: '<S3>/VENT_AMP'
+     *  Constant: '<S3>/VENT_PW'
+     *  Constant: '<S3>/VENT_SENSITIVITY'
+     *  Constant: '<S3>/VRP'
+     *  MATLABSystem: '<S3>/Digital Read'
+     */
+    if (Pacemaker_DW.temporalCounter_i1_f < MAX_uint32_T) {
+      Pacemaker_DW.temporalCounter_i1_f++;
+    }
 
-  if (Pacemaker_DW.is_active_c2_Pacemaker == 0U) {
-    Pacemaker_DW.is_active_c2_Pacemaker = 1U;
-    Pacemaker_DW.is_c2_Pacemaker = Pacemaker_IN_VVI_Charging_C22;
-    Pacemaker_DW.temporalCounter_i1_f = 0U;
+    if (Pacemaker_DW.is_active_c2_Pacemaker == 0U) {
+      Pacemaker_DW.is_active_c2_Pacemaker = 1U;
+      Pacemaker_DW.is_c2_Pacemaker = Pacemaker_IN_VVI_Charging_C22;
+      Pacemaker_DW.temporalCounter_i1_f = 0U;
+      Pacemaker_B.ATR_PACE_CTRL_i = false;
+      Pacemaker_B.VENT_PACE_CTRL_m = false;
+      Pacemaker_B.PACING_REF_PWM_l = Pacemaker_P.VENT_AMP_Value * 20.0;
+      Pacemaker_B.PACE_CHARGE_CTRL_h = true;
+      Pacemaker_B.PACE_GND_CTRL_j = true;
+      Pacemaker_B.ATR_GND_CTRL_i = false;
+      Pacemaker_B.VENT_GND_CTRL_n = true;
+    } else {
+      switch (Pacemaker_DW.is_c2_Pacemaker) {
+       case Pacemaker_IN_VVI_Charging_C22:
+        Pacemaker_B.ATR_PACE_CTRL_i = false;
+        Pacemaker_B.VENT_PACE_CTRL_m = false;
+        Pacemaker_B.PACE_CHARGE_CTRL_h = true;
+        Pacemaker_B.PACE_GND_CTRL_j = true;
+        Pacemaker_B.ATR_GND_CTRL_i = false;
+        Pacemaker_B.VENT_GND_CTRL_n = true;
+        if (Pacemaker_DW.temporalCounter_i1_f >= (uint32_T)ceil
+            (Pacemaker_P.VRP_Value)) {
+          Pacemaker_DW.is_c2_Pacemaker = Pacemaker_IN_VVI_Sensing;
+          Pacemaker_DW.temporalCounter_i1_f = 0U;
+          Pacemaker_B.FRONTEND_CTRL_i = true;
+          Pacemaker_B.VENT_CMP_REF_PWM = Pacemaker_P.VENT_SENSITIVITY_Value *
+            30.0;
+        }
+        break;
 
-    /* Merge: '<S2>/ATR_PACE_CTRL' */
-    Pacemaker_B.ATR_PACE_CTRL = false;
+       case Pacemaker_IN_VVI_Pacing:
+        Pacemaker_B.PACE_CHARGE_CTRL_h = false;
+        Pacemaker_B.PACE_GND_CTRL_j = true;
+        Pacemaker_B.ATR_PACE_CTRL_i = false;
+        Pacemaker_B.ATR_GND_CTRL_i = false;
+        Pacemaker_B.VENT_GND_CTRL_n = false;
+        Pacemaker_B.VENT_PACE_CTRL_m = true;
+        if (Pacemaker_DW.temporalCounter_i1_f >= (uint32_T)ceil
+            (Pacemaker_P.VENT_PW_Value)) {
+          Pacemaker_DW.is_c2_Pacemaker = Pacemaker_IN_VVI_Charging_C22;
+          Pacemaker_DW.temporalCounter_i1_f = 0U;
+          Pacemaker_B.VENT_PACE_CTRL_m = false;
+          Pacemaker_B.PACING_REF_PWM_l = Pacemaker_P.VENT_AMP_Value * 20.0;
+          Pacemaker_B.PACE_CHARGE_CTRL_h = true;
+          Pacemaker_B.VENT_GND_CTRL_n = true;
+        }
+        break;
 
-    /* Merge: '<S2>/VENT_PACE_CTRL' */
-    Pacemaker_B.VENT_PACE_CTRL = false;
+       default:
+        /* case IN_VVI_Sensing: */
+        Pacemaker_B.FRONTEND_CTRL_i = true;
+        if (Pacemaker_DW.temporalCounter_i1_f >= (uint32_T)ceil(60000.0 /
+             Pacemaker_P.LRL_Value - Pacemaker_P.VRP_Value)) {
+          Pacemaker_DW.is_c2_Pacemaker = Pacemaker_IN_VVI_Pacing;
+          Pacemaker_DW.temporalCounter_i1_f = 0U;
+          Pacemaker_B.PACE_CHARGE_CTRL_h = false;
+          Pacemaker_B.PACE_GND_CTRL_j = true;
+          Pacemaker_B.ATR_PACE_CTRL_i = false;
+          Pacemaker_B.ATR_GND_CTRL_i = false;
+          Pacemaker_B.VENT_GND_CTRL_n = false;
+          Pacemaker_B.VENT_PACE_CTRL_m = true;
+        } else if (rtb_AMP_CMP_DETECT_0) {
+          Pacemaker_DW.is_c2_Pacemaker = Pacemaker_IN_VVI_Charging_C22;
+          Pacemaker_DW.temporalCounter_i1_f = 0U;
+          Pacemaker_B.ATR_PACE_CTRL_i = false;
+          Pacemaker_B.VENT_PACE_CTRL_m = false;
+          Pacemaker_B.PACING_REF_PWM_l = Pacemaker_P.VENT_AMP_Value * 20.0;
+          Pacemaker_B.PACE_CHARGE_CTRL_h = true;
+          Pacemaker_B.PACE_GND_CTRL_j = true;
+          Pacemaker_B.ATR_GND_CTRL_i = false;
+          Pacemaker_B.VENT_GND_CTRL_n = true;
+        }
+        break;
+      }
+    }
+
+    /* End of Chart: '<S8>/Chart' */
+
+    /* Merge: '<S2>/ATR_GND_CTRL' incorporates:
+     *  SignalConversion generated from: '<S8>/ATR_GND_CTRL'
+     */
+    Pacemaker_B.ATR_GND_CTRL = Pacemaker_B.ATR_GND_CTRL_i;
+
+    /* Merge: '<S2>/ATR_PACE_CTRL' incorporates:
+     *  SignalConversion generated from: '<S8>/ATR_PACE_CTRL'
+     */
+    Pacemaker_B.ATR_PACE_CTRL = Pacemaker_B.ATR_PACE_CTRL_i;
+
+    /* Merge: '<S2>/FRONTEND_CTRL' incorporates:
+     *  SignalConversion generated from: '<S8>/FRONTEND_CTRL'
+     */
+    Pacemaker_B.FRONTEND_CTRL = Pacemaker_B.FRONTEND_CTRL_i;
+
+    /* Merge: '<S2>/PACE_CHARGE_CTRL' incorporates:
+     *  SignalConversion generated from: '<S8>/PACE_CHARGE_CTRL'
+     */
+    Pacemaker_B.PACE_CHARGE_CTRL = Pacemaker_B.PACE_CHARGE_CTRL_h;
+
+    /* Merge: '<S2>/PACE_GND_CTRL' incorporates:
+     *  SignalConversion generated from: '<S8>/PACE_GND_CTRL'
+     */
+    Pacemaker_B.PACE_GND_CTRL = Pacemaker_B.PACE_GND_CTRL_j;
 
     /* Merge: '<S2>/PACING_REF_PWM' incorporates:
-     *  Constant: '<S3>/VENT_AMP'
+     *  SignalConversion generated from: '<S8>/PACING_REF_PWM'
      */
-    Pacemaker_B.PACING_REF_PWM = Pacemaker_P.VENT_AMP_Value * 20.0;
+    Pacemaker_B.PACING_REF_PWM = Pacemaker_B.PACING_REF_PWM_l;
 
-    /* Merge: '<S2>/PACE_CHARGE_CTRL' */
-    Pacemaker_B.PACE_CHARGE_CTRL = true;
+    /* Merge: '<S2>/VENT_GND_CTRL' incorporates:
+     *  SignalConversion generated from: '<S8>/VENT_GND_CTRL'
+     */
+    Pacemaker_B.VENT_GND_CTRL = Pacemaker_B.VENT_GND_CTRL_n;
 
-    /* Merge: '<S2>/PACE_GND_CTRL' */
-    Pacemaker_B.PACE_GND_CTRL = true;
-
-    /* Merge: '<S2>/ATR_GND_CTRL' */
-    Pacemaker_B.ATR_GND_CTRL = false;
-
-    /* Merge: '<S2>/VENT_GND_CTRL' */
-    Pacemaker_B.VENT_GND_CTRL = true;
-  } else {
-    switch (Pacemaker_DW.is_c2_Pacemaker) {
-     case Pacemaker_IN_VVI_Charging_C22:
-      /* Merge: '<S2>/ATR_PACE_CTRL' */
-      Pacemaker_B.ATR_PACE_CTRL = false;
-
-      /* Merge: '<S2>/VENT_PACE_CTRL' */
-      Pacemaker_B.VENT_PACE_CTRL = false;
-
-      /* Merge: '<S2>/PACE_CHARGE_CTRL' */
-      Pacemaker_B.PACE_CHARGE_CTRL = true;
-
-      /* Merge: '<S2>/PACE_GND_CTRL' */
-      Pacemaker_B.PACE_GND_CTRL = true;
-
-      /* Merge: '<S2>/ATR_GND_CTRL' */
-      Pacemaker_B.ATR_GND_CTRL = false;
-
-      /* Merge: '<S2>/VENT_GND_CTRL' */
-      Pacemaker_B.VENT_GND_CTRL = true;
-      if (Pacemaker_DW.temporalCounter_i1_f >= (uint32_T)ceil
-          (Pacemaker_P.VRP_Value)) {
-        Pacemaker_DW.is_c2_Pacemaker = Pacemaker_IN_VVI_Sensing;
-        Pacemaker_DW.temporalCounter_i1_f = 0U;
-
-        /* Merge: '<S2>/FRONTEND_CTRL' */
-        Pacemaker_B.FRONTEND_CTRL = true;
-        Pacemaker_B.VENT_CMP_REF_PWM = Pacemaker_P.VENT_SENSITIVITY_Value * 30.0;
-      }
-      break;
-
-     case Pacemaker_IN_VVI_Pacing:
-      /* Merge: '<S2>/PACE_CHARGE_CTRL' */
-      Pacemaker_B.PACE_CHARGE_CTRL = false;
-
-      /* Merge: '<S2>/PACE_GND_CTRL' */
-      Pacemaker_B.PACE_GND_CTRL = true;
-
-      /* Merge: '<S2>/ATR_PACE_CTRL' */
-      Pacemaker_B.ATR_PACE_CTRL = false;
-
-      /* Merge: '<S2>/ATR_GND_CTRL' */
-      Pacemaker_B.ATR_GND_CTRL = false;
-
-      /* Merge: '<S2>/VENT_GND_CTRL' */
-      Pacemaker_B.VENT_GND_CTRL = false;
-
-      /* Merge: '<S2>/VENT_PACE_CTRL' */
-      Pacemaker_B.VENT_PACE_CTRL = true;
-      if (Pacemaker_DW.temporalCounter_i1_f >= (uint32_T)ceil
-          (Pacemaker_P.VENT_PW_Value)) {
-        Pacemaker_DW.is_c2_Pacemaker = Pacemaker_IN_VVI_Charging_C22;
-        Pacemaker_DW.temporalCounter_i1_f = 0U;
-
-        /* Merge: '<S2>/VENT_PACE_CTRL' */
-        Pacemaker_B.VENT_PACE_CTRL = false;
-
-        /* Merge: '<S2>/PACING_REF_PWM' incorporates:
-         *  Constant: '<S3>/VENT_AMP'
-         */
-        Pacemaker_B.PACING_REF_PWM = Pacemaker_P.VENT_AMP_Value * 20.0;
-
-        /* Merge: '<S2>/PACE_CHARGE_CTRL' */
-        Pacemaker_B.PACE_CHARGE_CTRL = true;
-
-        /* Merge: '<S2>/VENT_GND_CTRL' */
-        Pacemaker_B.VENT_GND_CTRL = true;
-      }
-      break;
-
-     default:
-      /* case IN_VVI_Sensing: */
-      if (Pacemaker_DW.temporalCounter_i1_f >= (uint32_T)ceil(60000.0 /
-           Pacemaker_P.LRL_Value - Pacemaker_P.VRP_Value)) {
-        /* Merge: '<S2>/FRONTEND_CTRL' */
-        Pacemaker_B.FRONTEND_CTRL = false;
-        Pacemaker_DW.is_c2_Pacemaker = Pacemaker_IN_VVI_Pacing;
-        Pacemaker_DW.temporalCounter_i1_f = 0U;
-
-        /* Merge: '<S2>/PACE_CHARGE_CTRL' */
-        Pacemaker_B.PACE_CHARGE_CTRL = false;
-
-        /* Merge: '<S2>/PACE_GND_CTRL' */
-        Pacemaker_B.PACE_GND_CTRL = true;
-
-        /* Merge: '<S2>/ATR_PACE_CTRL' */
-        Pacemaker_B.ATR_PACE_CTRL = false;
-
-        /* Merge: '<S2>/ATR_GND_CTRL' */
-        Pacemaker_B.ATR_GND_CTRL = false;
-
-        /* Merge: '<S2>/VENT_GND_CTRL' */
-        Pacemaker_B.VENT_GND_CTRL = false;
-
-        /* Merge: '<S2>/VENT_PACE_CTRL' */
-        Pacemaker_B.VENT_PACE_CTRL = true;
-      } else if (rtb_AMP_CMP_DETECT_0) {
-        /* Merge: '<S2>/FRONTEND_CTRL' */
-        Pacemaker_B.FRONTEND_CTRL = false;
-        Pacemaker_DW.is_c2_Pacemaker = Pacemaker_IN_VVI_Charging_C22;
-        Pacemaker_DW.temporalCounter_i1_f = 0U;
-
-        /* Merge: '<S2>/ATR_PACE_CTRL' */
-        Pacemaker_B.ATR_PACE_CTRL = false;
-
-        /* Merge: '<S2>/VENT_PACE_CTRL' */
-        Pacemaker_B.VENT_PACE_CTRL = false;
-
-        /* Merge: '<S2>/PACING_REF_PWM' incorporates:
-         *  Constant: '<S3>/VENT_AMP'
-         */
-        Pacemaker_B.PACING_REF_PWM = Pacemaker_P.VENT_AMP_Value * 20.0;
-
-        /* Merge: '<S2>/PACE_CHARGE_CTRL' */
-        Pacemaker_B.PACE_CHARGE_CTRL = true;
-
-        /* Merge: '<S2>/PACE_GND_CTRL' */
-        Pacemaker_B.PACE_GND_CTRL = true;
-
-        /* Merge: '<S2>/ATR_GND_CTRL' */
-        Pacemaker_B.ATR_GND_CTRL = false;
-
-        /* Merge: '<S2>/VENT_GND_CTRL' */
-        Pacemaker_B.VENT_GND_CTRL = true;
-      }
-      break;
-    }
+    /* Merge: '<S2>/VENT_PACE_CTRL' incorporates:
+     *  SignalConversion generated from: '<S8>/VENT_PACE_CTRL'
+     */
+    Pacemaker_B.VENT_PACE_CTRL = Pacemaker_B.VENT_PACE_CTRL_m;
   }
 
-  /* End of Chart: '<S8>/Chart' */
+  /* End of RelationalOperator: '<S4>/Equal5' */
+  /* End of Outputs for SubSystem: '<S2>/Subsystem Reference2' */
 
   /* MATLABSystem: '<S5>/PWM Output2' */
   MW_PWM_SetDutyCycle(Pacemaker_DW.obj_f.MW_PWM_HANDLE,
