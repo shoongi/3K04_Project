@@ -9,22 +9,22 @@ class AOO:
         self.APW = 0.4
         self.AOOData = {}
 
-    def loadAOO(self):
+    def loadAOO(self): #Loads AOO data
         self.userData.loadParam()
         userDict = self.userData.userParamDict
-        if (self.name in userDict):
-            if ("AOO" in userDict[self.name]):
+        if (self.name in userDict): #If the user has existing data
+            if ("AOO" in userDict[self.name]): #If the user has existing AOO data, set class data to file data
                 self.LRL = userDict[self.name]["AOO"]["LRL"]
                 self.URL = userDict[self.name]["AOO"]["URL"]
                 self.AA = userDict[self.name]["AOO"]["AA"]
                 self.APW = userDict[self.name]["AOO"]["APW"]
-            else:
+            else: #User doesn't have existing AOO data, set dictionary data to class data
                 userDict[self.name]["AOO"] = {}
                 userDict[self.name]["AOO"]["LRL"] = self.LRL
                 userDict[self.name]["AOO"]["URL"] = self.URL
                 userDict[self.name]["AOO"]["AA"] = self.AA
                 userDict[self.name]["AOO"]["APW"] = self.APW
-        else:
+        else: #User doesn't exist, set dictionary data to class data
             userDict[self.name] = {}
             userDict[self.name]["AOO"] = {}
             userDict[self.name]["AOO"]["LRL"] = self.LRL
@@ -447,6 +447,12 @@ class AAI:
     def addARP(self,inputARP):
         ARP = int(inputARP)
         if (ARP >= 150 or ARP <= 500):
+            if (ARP < self.LRL):
+                print ("ARP must be larger than the LRL")
+                return False, "ARP must be larger than the LRL"
+            if (ARP > self.APW):
+                print ("ARP must be less than the APW")
+                return False, "ARP must be less than the APW"
             if (ARP % 10 == 0):
                 self.ARP = ARP
                 print("Added ARP")
@@ -618,6 +624,12 @@ class VVI:
     def addVRP(self,inputVRP):
         VRP = int(inputVRP)
         if (VRP >= 150 or VRP <= 500):
+            if (VRP < self.LRL):
+                print ("VRP must be larger than the LRL")
+                return False, "VRP must be larger than the LRL"
+            if (VRP > self.VPW):
+                print ("VRP must be less than the VPW")
+                return False, "VRP must be less than the VPW"
             if (VRP % 10 == 0):
                 self.VRP = VRP
                 print("Added VRP")

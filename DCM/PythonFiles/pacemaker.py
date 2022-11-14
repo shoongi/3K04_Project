@@ -39,14 +39,20 @@ def open_VOO(prev_page):
     VOO_url = VOOData.URL
     url_label = customtkinter.CTkLabel(master=frame,text="Upper Rate Limit")
     url_label.pack(pady=0, padx=10)
-    url_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOO_url)
+    url_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOO_url) #User input gets saved to this variable
     url_entry.pack(pady=8, padx=10)
+
+    save_button_url = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOOData.addURL(url_entry.get())) #Command should call corresponding function to add value, pass in the user input variable
+    save_button_url.pack(pady=10, padx=10)
 
     VOO_lrl = VOOData.LRL
     lrl_label = customtkinter.CTkLabel(master=frame,text="Lower Rate Limit")
     lrl_label.pack(pady=0, padx=10)
-    lrl_entry = customtkinter.CTkEntry(master=frame, textvariable=VOO_lrl)
+    lrl_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOO_lrl)
     lrl_entry.pack(pady=8, padx=10)
+
+    save_button_lrl = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOOData.addLRL(lrl_entry.get()))
+    save_button_lrl.pack(pady=10, padx=10)
 
     VOO_VA = VOOData.VA
     ventricular_amplitude_label = customtkinter.CTkLabel(master=frame,text="Ventricular Amplitude")
@@ -54,15 +60,17 @@ def open_VOO(prev_page):
     ventricular_amplitude_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOO_VA)
     ventricular_amplitude_entry.pack(pady=8, padx=10)
 
+    save_button_VA = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOOData.addVA(ventricular_amplitude_entry.get()))
+    save_button_VA.pack(pady=10, padx=10)
+
     VOO_VPW = VOOData.VPW
     ventricular_pulse_width_label = customtkinter.CTkLabel(master=frame,text="Ventricular Pulse Width")
     ventricular_pulse_width_label.pack(pady=0, padx=10)
     ventricular_pulse_width_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOO_VPW)
     ventricular_pulse_width_entry.pack(pady=8, padx=10)
 
-    #we need to create functionality for all enter buttons, so they save the information we have entered
-    save_button = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : [VOOData.addLRL(lrl_entry.get()),VOOData.addURL(url_entry.get()),VOOData.addVA(ventricular_amplitude_entry.get()),VOOData.addVPW(ventricular_pulse_width_entry.get()),VOOData.addVOO()])
-    save_button.pack(pady=10, padx=10)
+    save_button_VPW = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOOData.addVPW(ventricular_pulse_width_entry.get()))
+    save_button_VPW.pack(pady=10, padx=10)
 
     back_button = customtkinter.CTkButton(master=frame, text = "Back", command = lambda : [VOO_page.destroy(),open_home(VOO_page)])
     back_button.pack(pady=10, padx=10)
@@ -90,11 +98,17 @@ def open_AOO(prev_page):
     url_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOO_url)
     url_entry.pack(pady=8, padx=10)
 
+    save_button_url = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOOData.addURL(url_entry.get()))
+    save_button_url.pack(pady=10, padx=10)
+
     AOO_lrl = AOOData.LRL
     lrl_label = customtkinter.CTkLabel(master=frame,text="Lower Rate Limit")
     lrl_label.pack(pady=0, padx=10)
     lrl_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOO_lrl)
     lrl_entry.pack(pady=8, padx=10)
+
+    save_button_lrl = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOOData.addLRL(lrl_entry.get()))
+    save_button_lrl.pack(pady=10, padx=10)
 
     AOO_AA = AOOData.AA
     atrial_amplitude_label = customtkinter.CTkLabel(master=frame,text="Atrial Amplitude")
@@ -102,15 +116,17 @@ def open_AOO(prev_page):
     atrial_amplitude_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOO_AA)
     atrial_amplitude_entry.pack(pady=8, padx=14)
 
+    save_button_AA = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOOData.addAA(atrial_amplitude_entry.get()))
+    save_button_AA.pack(pady=10, padx=10)
+
     AOO_APW = AOOData.APW
     atrial_pulse_width_label = customtkinter.CTkLabel(master=frame,text="Atrial Pulse Width")
     atrial_pulse_width_label.pack(pady=0, padx=10)
     atrial_pulse_width_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOO_APW)
     atrial_pulse_width_entry.pack(pady=8, padx=14)
 
-    #functionality needs to be added here
-    save_button = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : [AOOData.addAA(atrial_amplitude_entry.get()),AOOData.addAPW(atrial_pulse_width_entry.get()),AOOData.addLRL(lrl_entry.get()),AOOData.addURL(url_entry.get()),AOOData.addAOO()])
-    save_button.pack(pady=10, padx=10)
+    save_button_APW = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOOData.addAPW(atrial_pulse_width_entry.get()))
+    save_button_APW.pack(pady=10, padx=10)
 
     back_button = customtkinter.CTkButton(master=frame, text = "Back", command = lambda : [AOO_page.destroy(),open_home(AOO_page)])
     back_button.pack(pady=10, padx=10)
@@ -138,11 +154,17 @@ def open_VVI(prev_page):
     url_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVI_url)
     url_entry.pack(pady=0, padx=10)
 
+    save_button_url = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VVIData.addURL(url_entry.get()))
+    save_button_url.pack(pady=10, padx=10)
+
     VVI_lrl = VVIData.LRL
     lrl_label = customtkinter.CTkLabel(master=frame,text="Lower Rate Limit")
     lrl_label.pack(pady=0, padx=10)
     lrl_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVI_lrl)
     lrl_entry.pack(pady=0, padx=10)
+
+    save_button_lrl = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VVIData.addLRL(lrl_entry.get()))
+    save_button_lrl.pack(pady=10, padx=10)
 
     VVI_VA = VVIData.VA
     ventricular_amplitude_label = customtkinter.CTkLabel(master=frame,text="Ventricular Amplitude")
@@ -150,17 +172,26 @@ def open_VVI(prev_page):
     ventricular_amplitude_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVI_VA)
     ventricular_amplitude_entry.pack(pady=0, padx=10)
 
+    save_button_VA = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VVIData.addVA(ventricular_amplitude_entry.get()))
+    save_button_VA.pack(pady=10, padx=10)
+
     VVI_VPW = VVIData.VPW
     ventricular_pulse_width_label = customtkinter.CTkLabel(master=frame,text="Ventricular Pulse Width")
     ventricular_pulse_width_label.pack(pady=0, padx=10)
     ventricular_pulse_width_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVI_VPW)
     ventricular_pulse_width_entry.pack(pady=0, padx=10)
 
+    save_button_VPW = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VVIData.addVPW(ventricular_pulse_width_entry.get()))
+    save_button_VPW.pack(pady=10, padx=10)
+
     VVI_VRP = VVIData.VRP
     VRP_label = customtkinter.CTkLabel(master=frame,text="VRP")
     VRP_label.pack(pady=0, padx=10)
     VRP_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVI_VRP)
     VRP_entry.pack(pady=0, padx=10)
+
+    save_button_VRP = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VVIData.addVRP(VRP_entry.get()))
+    save_button_VRP.pack(pady=10, padx=10)
 
     VVI_VS = StringVar()
     ventricular_sensitivity_label = customtkinter.CTkLabel(master=frame,text="Ventricular Sensitivity")
@@ -179,10 +210,6 @@ def open_VVI(prev_page):
     rate_smoothing_label.pack(pady=0, padx=10)
     rate_smoothing_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVI_RS)
     rate_smoothing_entry.pack(pady=0, padx=10)
-
-    #functionality needs to be added
-    save_button = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : [VVIData.addVA(ventricular_amplitude_entry.get()),VVIData.addVPW(ventricular_pulse_width_entry.get()),VVIData.addVRP(VRP_entry.get()),VVIData.addLRL(lrl_entry.get()),VVIData.addURL(url_entry.get()),VVIData.addVVI()])
-    save_button.pack(pady=10, padx=10)
 
     #we need to open home page
     back_button = customtkinter.CTkButton(master=frame, text = "Back", command = lambda : [VVI_page.destroy(),open_home(VVI_page)])
@@ -212,11 +239,17 @@ def open_AAI(prev_page):
     url_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAI_url)
     url_entry.pack(pady=0, padx=10)
 
+    save_button_url = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AAIData.addURL(url_entry.get()))
+    save_button_url.pack(pady=10, padx=10)
+
     AAI_lrl = AAIData.LRL
     lrl_label = customtkinter.CTkLabel(master=frame, text = "Lower Rate Limit")
     lrl_label.pack(pady=0,padx=10)
     lrl_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAI_lrl)
     lrl_entry.pack(pady=0,padx=10)
+
+    save_button_lrl = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AAIData.addLRL(lrl_entry.get()))
+    save_button_lrl.pack(pady=10, padx=10)
 
     AAI_aa = AAIData.AA
     atrial_amplitude_label = customtkinter.CTkLabel(master=frame,text="Atrial Amplitude")
@@ -224,17 +257,26 @@ def open_AAI(prev_page):
     atrial_amplitude_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAI_aa)
     atrial_amplitude_entry.pack(pady=0, padx=10)
 
+    save_button_AA = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AAIData.addAA(atrial_amplitude_entry.get()))
+    save_button_AA.pack(pady=10, padx=10)
+
     AAI_APW = AAIData.APW
     atrial_pulse_width_label = customtkinter.CTkLabel(master=frame,text="Atrial Pulse Width")
     atrial_pulse_width_label.pack(pady=0, padx=10)
     atrial_pulse_width_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAI_APW)
     atrial_pulse_width_entry.pack(pady=0, padx=10)
 
+    save_button_APW = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AAIData.addAPW(atrial_pulse_width_entry.get()))
+    save_button_APW.pack(pady=10, padx=10)
+
     AAI_ARP = AAIData.ARP
     atrial_refactory_period_label = customtkinter.CTkLabel(master=frame,text="Atrial Refactory Period")
     atrial_refactory_period_label.pack(pady=0, padx=10)
     atrial_refactory_period_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAI_ARP)
     atrial_refactory_period_entry.pack(pady=0, padx=10)
+
+    save_button_ARP = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AAIData.addARP(atrial_refactory_period_entry.get()))
+    save_button_ARP.pack(pady=10, padx=10)
 
     AAI_AS = StringVar()
     atrial_sensitivity_label = customtkinter.CTkLabel(master=frame,text="Atrial Sensitivity")
