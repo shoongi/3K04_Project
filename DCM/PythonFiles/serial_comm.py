@@ -1,5 +1,6 @@
 import serial
 import time
+import struct
 
 
 # ----------- USER DEFINED CONSTANTS ------------ #
@@ -40,11 +41,15 @@ Activity Threshold	    uint8_t		1
 Reaction Time		    uint8_t		1
 Response Factor		    uint8_t		1
 Recovery Time		    single		4
-
 '''
-def packTransmitData(lrl, url, max_rate, vamp, vpw, vsensitivity, vrp, aamp, apw, 
-                     asensitivity, arp, pvarp, act_threshold, react_time, resp_factor, recover_time):
+# def packTransmitData(lrl, url, max_rate, vamp, vpw, vsensitivity, vrp, aamp, apw, 
+#                      asensitivity, arp, pvarp, act_threshold, react_time, resp_factor, recover_time):
     
+#     paramArray = [lrl, url, max_rate, vamp, vpw, vsensitivity, vrp, aamp, apw, asensitivity, arp, pvarp, act_threshold, react_time, resp_factor, recover_time]
+
+#     transmitArray = bytearray(paramArray)
+
+#     return transmitArray
 
     
 
@@ -53,14 +58,27 @@ def main():
     ser = initializeSerial()
     serialString = 0;
 
+    single = struct.pack('f', 1.21)
+    integer = struct.pack('B', 123)
+
+    test = single + integer
+
     while(1):
+
+        ser.write(test)
 
         print("printing..")
     
-        # Read data out of the buffer until a carriage return / new line is found
-        serialString = ser.read(5)
-
-        # Print the contents of the serial data
-        print(serialString.hex())
+        # # Read data out of the buffer until a carriage return / new line is found
+        # serialString = ser.read(5)
+        # tester1 = struct.unpack('f', serialString[0:4])
+        # tester2 = struct.unpack('B', serialString[4:5])
+        # # Print the contents of the serial data
+        # print(tester1)
+        # print(tester2)
 
         time.sleep(5)
+
+
+if __name__ == "__main__":
+   main()
