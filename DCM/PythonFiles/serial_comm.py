@@ -16,6 +16,7 @@ def initializeSerial():
                         baudrate    = BAUDRATE, 
                         bytesize    = DATASIZE, 
                         timeout     = TIMEOUT, 
+                        parity      = 'N',
                         stopbits    = serial.STOPBITS_ONE)
     return ser
 
@@ -59,23 +60,26 @@ def main():
     serialString = 0;
 
     single = struct.pack('f', 1.21)
-    integer = struct.pack('B', 123)
+    integer = struct.pack('d', 60)
 
-    test = single + integer
+    test = single;
 
     while(1):
 
-        ser.write(test)
+        ser.write(integer)
 
         print("printing..")
+
     
-        # # Read data out of the buffer until a carriage return / new line is found
-        # serialString = ser.read(5)
-        # tester1 = struct.unpack('f', serialString[0:4])
-        # tester2 = struct.unpack('B', serialString[4:5])
-        # # Print the contents of the serial data
-        # print(tester1)
-        # print(tester2)
+        
+        # Read data out of the buffer until a carriage return / new line is found
+        # if(ser.in_waiting):
+        #     serialString = ser.read(5)
+        #     tester1 = struct.unpack('f', serialString[0:4])
+        #     tester2 = struct.unpack('B', serialString[4:5])
+        #     # Print the contents of the serial data
+        #     print(tester1)
+        #     print(tester2)
 
         time.sleep(5)
 
