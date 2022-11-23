@@ -1,0 +1,11 @@
+AccelerometerTest_tgtconn.o: \
+ C:/3K04_Lab/3K04_Project/Pacemaker/Submission/AccelerometerTest_ert_rtw/AccelerometerTest_tgtconn.c \
+ C:/3K04_Lab/3K04_Project/Pacemaker/Submission/AccelerometerTest_ert_rtw/rtwtypes.h \
+ C:/Program\ Files/MATLAB/R2022a/extern/include/RTIOStreamTgtAppSvc/RTIOStreamTgtAppSvcCIntrf.h \
+ C:/Program\ Files/MATLAB/R2022a/extern/include/RTIOStreamTgtAppSvc/RTIOStreamTgtAppSvc_dll.hpp
+
+C:/3K04_Lab/3K04_Project/Pacemaker/Submission/AccelerometerTest_ert_rtw/rtwtypes.h:
+
+C:/Program\ Files/MATLAB/R2022a/extern/include/RTIOStreamTgtAppSvc/RTIOStreamTgtAppSvcCIntrf.h:
+
+C:/Program\ Files/MATLAB/R2022a/extern/include/RTIOStreamTgtAppSvc/RTIOStreamTgtAppSvc_dll.hpp:
