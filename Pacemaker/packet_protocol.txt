@@ -1,0 +1,16 @@
+Serial Bit Field Design for Assignment 2
+
+Parameter		Data Type	Bytes
+
+LRL			uint8_t		1
+URL			uint8_t		1
+VAMP			single		4
+VPW			single		4
+VSensitivty		single		4
+VRP			uint16_t	2
+AAMP			single		4
+APW			single		4
+ASensitivty		single		4
+ARP			uint16_t	2
+PVARP			uint16_t	2
+
