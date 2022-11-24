@@ -20,68 +20,74 @@ def initializeSerial():
                         stopbits    = serial.STOPBITS_ONE)
     return ser
 
+def deinitializeSerial(ser):
+    ser.close()
 '''
-note:   The packing function will pack the required parameters into a 40 bit integer
+note:   The packing function will pack the required parameters into a 33 bit integer
         according to their required space as outlined below.
 
-Parameter		        Data Type	Bytes
 
-LRL			            uint8_t		1
-URL			            uint8_t		1
-Max Sensor Rate		    uint8_t		1
-VAMP			        single		4
-VPW			            single		4
-VSensitivty		        single		4
-VRP			            uint16_t	2
-AAMP			        single		4
-APW			            single		4
-ASensitivty		        single		4
-ARP			            uint16_t	2
-PVARP			        uint16_t	2
-Activity Threshold	    uint8_t		1
-Reaction Time		    uint8_t		1
-Response Factor		    uint8_t		1
-Recovery Time		    single		4
+Parameter		Data Type	Bytes
+
+LRL			    uint8_t		1
+URL			    uint8_t		1
+VAMP			single		4
+VPW			    single		4
+VSensitivty		single		4
+VRP			    uint16_t	2
+AAMP			single		4
+APW			    single		4
+ASensitivty		single		4
+ARP			    uint16_t	2
+PVARP			uint16_t	2
+MODE			uint8_t 	1
 '''
-# def packTransmitData(lrl, url, max_rate, vamp, vpw, vsensitivity, vrp, aamp, apw, 
-#                      asensitivity, arp, pvarp, act_threshold, react_time, resp_factor, recover_time):
+def packTransmitData(lrl, url, vamp, vpw, vsensitivity, vrp, aamp, apw, asensitivity, arp, pvarp, mode):
     
-#     paramArray = [lrl, url, max_rate, vamp, vpw, vsensitivity, vrp, aamp, apw, asensitivity, arp, pvarp, act_threshold, react_time, resp_factor, recover_time]
+    lrl_s           =       struct.pack('B', lrl)
+    url_s           =       struct.pack('B', url)
+    vamp_s          =       struct.pack('f', vamp)
+    vpw_s           =       struct.pack('f', vpw)
+    vsensitivity_s  =       struct.pack('f', vsensitivity)
+    vrp_s           =       struct.pack('h', vrp)
+    aamp_s          =       struct.pack('f', aamp)
+    apw_s           =       struct.pack('f', apw)
+    asensitivity_s  =       struct.pack('f', asensitivity)
+    arp_s           =       struct.pack('h', arp)
+    pvarp_s         =       struct.pack('h', pvarp)
+    mode_s          =       struct.pack('B', mode)
 
-#     transmitArray = bytearray(paramArray)
+    transmitPacket  = lrl_s + url_s + vamp_s + vpw_s + vsensitivity_s + vrp_s + aamp_s + apw_s + asensitivity_s + arp_s + pvarp_s + mode_s
 
-#     return transmitArray
-
+    return transmitPacket
     
 
 def main():
 
     ser = initializeSerial()
-    serialString = 0;
 
-    single = struct.pack('f', 1.21)
-    integer = struct.pack('d', 60)
+    # integer = struct.pack('B', 45)
+    transmit = packTransmitData(110, 90, 2, 2, 2, 100, 5, 2, 2, 250, 1, 1)
+    time.sleep(0.01)
+    ser.write(transmit)
+    # while(1):
 
-    test = single;
+    #     ser.write(transmit)
 
-    while(1):
-
-        ser.write(integer)
-
-        print("printing..")
+    #     print("printing..")
 
     
         
-        # Read data out of the buffer until a carriage return / new line is found
-        # if(ser.in_waiting):
-        #     serialString = ser.read(5)
-        #     tester1 = struct.unpack('f', serialString[0:4])
-        #     tester2 = struct.unpack('B', serialString[4:5])
-        #     # Print the contents of the serial data
-        #     print(tester1)
-        #     print(tester2)
+    #     # Read data out of the buffer until a carriage return / new line is found
+    #     # if(ser.in_waiting):
+    #     #     serialString = ser.read(5)
+    #     #     tester1 = struct.unpack('f', serialString[0:4])
+    #     #     tester2 = struct.unpack('B', serialString[4:5])
+    #     #     # Print the contents of the serial data
+    #     #     print(tester1)
+    #     #     print(tester2)
 
-        time.sleep(5)
+    #     time.sleep(5)
 
 
 if __name__ == "__main__":
