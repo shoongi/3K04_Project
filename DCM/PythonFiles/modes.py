@@ -335,42 +335,22 @@ class VVI:
             print(comment)
 
     def addVPW(self,inputVPW):
-        VPW = float(inputVPW)
-        if (VPW == 0.05):
-            self.VPW = VPW
-            print("Added VPW")
-            return True, "Good"
-        elif (VPW >= 0.1 and VPW <= 1.9):
-            if (True):
-                self.VPW = VPW
-                print("Added VPW")
-                return True, "Good"
-            else:
-                print("VPW must be increment of 0.1")
-                return False, "VPW must be increment of 0.1"
+        acceptable, comment = parameters.addVPW(self,inputVPW)
+
+        if (acceptable == True):
+            self.VPW = inputVPW
+            self.addVVI()
         else:
-            print("VPW must be within range of 0.05 or 0.1-1.9")
-            return False, "VPW must be within range of 0.05 or 0.1-1.9"
+            print(comment)
 
     def addVRP(self,inputVRP):
-        VRP = int(inputVRP)
-        if (VRP >= 150 or VRP <= 500):
-            if (VRP < self.LRL):
-                print ("VRP must be larger than the LRL")
-                return False, "VRP must be larger than the LRL"
-            if (VRP > self.VPW):
-                print ("VRP must be less than the VPW")
-                return False, "VRP must be less than the VPW"
-            if (VRP % 10 == 0):
-                self.VRP = VRP
-                print("Added VRP")
-                return True, "Good"
-            else:
-                print("VRP must be increment of 10")
-                return False, "VRP must be increment of 10"
+        acceptable, comment = parameters.addVA(self,inputVRP)
+
+        if (acceptable == True):
+            self.VRP = inputVRP
+            self.addVVI()
         else:
-            print("VRP must be within range of 150-500")
-            return False, "VRP must be within range of 150-500"
+            print(comment)
 
     def addVVI(self):
         print("Added VVI\n")
