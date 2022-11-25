@@ -57,21 +57,43 @@ def packTransmitData(lrl, url, vamp, vpw, vsensitivity, vrp, aamp, apw, asensiti
     pvarp_s         =       struct.pack('h', pvarp)
     mode_s          =       struct.pack('B', mode)
 
-    transmitPacket  = lrl_s + url_s + vamp_s + vpw_s + vsensitivity_s + vrp_s + aamp_s + apw_s + asensitivity_s + arp_s + pvarp_s + mode_s
+    transmitPacket  = b'\x10' + lrl_s + url_s + vamp_s + vpw_s + vsensitivity_s + vrp_s + aamp_s + apw_s + asensitivity_s + arp_s + pvarp_s + mode_s
 
     return transmitPacket
-    
+
+
+'''
+
+    AOO     (2)
+    AAI     (3)
+    VOO     (4)
+    VVI     (5)
+
+'''
 
 def main():
 
     ser = initializeSerial()
 
-    # integer = struct.pack('B', 45)
-    transmit = packTransmitData(110, 90, 2, 2, 2, 100, 5, 2, 2, 250, 1, 1)
+    lrl = 120
+    url = 145
+    vamp = 2
+    vpw = 1
+    vsensitivity = 2
+    vrp = 330
+    aamp = 5
+    apw = 2
+    asensitivity = 2
+    arp = 250
+    pvarp = 1
+    mode = 2
+
+    transmit = packTransmitData(lrl, url, vamp, vpw, vsensitivity, vrp, aamp, apw, asensitivity, arp, pvarp, mode)
     time.sleep(0.01)
     ser.write(transmit)
     # while(1):
 
+    deinitializeSerial(ser)
     #     ser.write(transmit)
 
     #     print("printing..")
