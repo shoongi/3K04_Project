@@ -1,9 +1,11 @@
 MW_digitalIO.o
 mw_sdk_interface.o
+MW_SCI.o
 MW_PWM.o
 ert_main.o
 Pacemaker.o
 Pacemaker_data.o
+echo_params.o
 startup.o
 system_MK64F12.o
 startup_MK64F12.o

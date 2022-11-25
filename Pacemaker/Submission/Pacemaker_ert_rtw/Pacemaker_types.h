@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'Pacemaker'.
  *
- * Model version                  : 5.36
+ * Model version                  : 5.70
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Sun Oct 23 20:37:10 2022
+ * C/C++ source code generated on : Fri Nov 25 14:58:20 2022
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -23,33 +23,8 @@
 #include "MW_SVD.h"
 
 /* Model Code Variants */
-#ifndef DEFINED_TYPEDEF_FOR_Pacemaker_Mode_
-#define DEFINED_TYPEDEF_FOR_Pacemaker_Mode_
 
-typedef enum {
-  AAT = 0,                             /* Default value */
-  VVT,
-  AOO,
-  AAI,
-  VOO,
-  VVI,
-  VDD,
-  DOO,
-  DDI,
-  DDD,
-  AOOR,
-  AAIR,
-  VOOR,
-  VVIR,
-  VDDR,
-  DOOR,
-  DDIR,
-  DDDR
-} Pacemaker_Mode;
-
-#endif
-
-/* Custom Type definition for MATLABSystem: '<S5>/PWM Output2' */
+/* Custom Type definition for MATLABSystem: '<S1>/Serial Transmit' */
 #include "MW_SVD.h"
 #ifndef struct_tag_0QIIqIWUIOhUbf1p9QN9pB
 #define struct_tag_0QIIqIWUIOhUbf1p9QN9pB
@@ -67,6 +42,27 @@ struct tag_0QIIqIWUIOhUbf1p9QN9pB
 typedef struct tag_0QIIqIWUIOhUbf1p9QN9pB b_freedomk64f_Hardware_Pacema_T;
 
 #endif                             /* typedef_b_freedomk64f_Hardware_Pacema_T */
+
+#ifndef struct_tag_GV9UedAE1zOVNNbkXknChB
+#define struct_tag_GV9UedAE1zOVNNbkXknChB
+
+struct tag_GV9UedAE1zOVNNbkXknChB
+{
+  boolean_T matlabCodegenIsDeleted;
+  int32_T isInitialized;
+  boolean_T isSetupComplete;
+  b_freedomk64f_Hardware_Pacema_T Hw;
+  MW_Handle_Type MW_SCIHANDLE;
+};
+
+#endif                                 /* struct_tag_GV9UedAE1zOVNNbkXknChB */
+
+#ifndef typedef_freedomk64f_SCIWrite_Pacemake_T
+#define typedef_freedomk64f_SCIWrite_Pacemake_T
+
+typedef struct tag_GV9UedAE1zOVNNbkXknChB freedomk64f_SCIWrite_Pacemake_T;
+
+#endif                             /* typedef_freedomk64f_SCIWrite_Pacemake_T */
 
 #ifndef struct_tag_q6HQSF2nXq6EjCNj0vbuLD
 #define struct_tag_q6HQSF2nXq6EjCNj0vbuLD
@@ -89,6 +85,28 @@ struct tag_q6HQSF2nXq6EjCNj0vbuLD
 typedef struct tag_q6HQSF2nXq6EjCNj0vbuLD freedomk64f_DigitalRead_Pacem_T;
 
 #endif                             /* typedef_freedomk64f_DigitalRead_Pacem_T */
+
+#ifndef struct_tag_214cR1nKZWaoqoq0FTtOUH
+#define struct_tag_214cR1nKZWaoqoq0FTtOUH
+
+struct tag_214cR1nKZWaoqoq0FTtOUH
+{
+  boolean_T matlabCodegenIsDeleted;
+  int32_T isInitialized;
+  boolean_T isSetupComplete;
+  b_freedomk64f_Hardware_Pacema_T Hw;
+  MW_Handle_Type MW_SCIHANDLE;
+  real_T SampleTime;
+};
+
+#endif                                 /* struct_tag_214cR1nKZWaoqoq0FTtOUH */
+
+#ifndef typedef_freedomk64f_SCIRead_Pacemaker_T
+#define typedef_freedomk64f_SCIRead_Pacemaker_T
+
+typedef struct tag_214cR1nKZWaoqoq0FTtOUH freedomk64f_SCIRead_Pacemaker_T;
+
+#endif                             /* typedef_freedomk64f_SCIRead_Pacemaker_T */
 
 #ifndef struct_tag_EkIWEs70Gs0LyfeXELZ2TC
 #define struct_tag_EkIWEs70Gs0LyfeXELZ2TC

@@ -1,0 +1,23 @@
+serial_test_data.o: \
+ C:/3K04_Lab/3K04_Project/Pacemaker/Submission/serial_test_ert_rtw/serial_test_data.c \
+ C:/3K04_Lab/3K04_Project/Pacemaker/Submission/serial_test_ert_rtw/serial_test.h \
+ C:/3K04_Lab/3K04_Project/Pacemaker/Submission/serial_test_ert_rtw/rtwtypes.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_SCI.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_SVD.h \
+ C:/3K04_Lab/3K04_Project/Pacemaker/Submission/serial_test_ert_rtw/rtwtypes.h \
+ C:/3K04_Lab/3K04_Project/Pacemaker/Submission/serial_test_ert_rtw/serial_test_types.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_SVD.h
+
+C:/3K04_Lab/3K04_Project/Pacemaker/Submission/serial_test_ert_rtw/serial_test.h:
+
+C:/3K04_Lab/3K04_Project/Pacemaker/Submission/serial_test_ert_rtw/rtwtypes.h:
+
+C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_SCI.h:
+
+C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_SVD.h:
+
+C:/3K04_Lab/3K04_Project/Pacemaker/Submission/serial_test_ert_rtw/rtwtypes.h:
+
+C:/3K04_Lab/3K04_Project/Pacemaker/Submission/serial_test_ert_rtw/serial_test_types.h:
+
+C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_SVD.h:
