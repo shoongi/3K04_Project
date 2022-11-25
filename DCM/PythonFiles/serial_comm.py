@@ -41,43 +41,67 @@ ASensitivty		single		4
 ARP			    uint16_t	2
 PVARP			uint16_t	2
 MODE			uint8_t 	1
-'''
-def packTransmitData(lrl, url, vamp, vpw, vsensitivity, vrp, aamp, apw, asensitivity, arp, pvarp, mode):
-    
-    lrl_s           =       struct.pack('B', lrl)
-    url_s           =       struct.pack('B', url)
-    vamp_s          =       struct.pack('f', vamp)
-    vpw_s           =       struct.pack('f', vpw)
-    vsensitivity_s  =       struct.pack('f', vsensitivity)
-    vrp_s           =       struct.pack('h', vrp)
-    aamp_s          =       struct.pack('f', aamp)
-    apw_s           =       struct.pack('f', apw)
-    asensitivity_s  =       struct.pack('f', asensitivity)
-    arp_s           =       struct.pack('h', arp)
-    pvarp_s         =       struct.pack('h', pvarp)
-    mode_s          =       struct.pack('B', mode)
 
-    transmitPacket  = b'\x10' + lrl_s + url_s + vamp_s + vpw_s + vsensitivity_s + vrp_s + aamp_s + apw_s + asensitivity_s + arp_s + pvarp_s + mode_s
-
-    return transmitPacket
-
-
-'''
-
+MODES:
     AOO     (2)
     AAI     (3)
     VOO     (4)
     VVI     (5)
 
 '''
+def packTransmitData(lrl, url, vamp, vpw, vsensitivity, vrp, aamp, apw, asensitivity, arp, pvarp, mode):
+    
+    checksum = lrl + url + vamp + vpw + vsensitivity + vrp + aamp + apw + asensitivity + arp + pvarp + mode
+
+    lrl_s           =       struct.pack('B', lrl)
+    url_s           =       struct.pack('B', url)
+    vamp_s          =       struct.pack('f', vamp)
+    vpw_s           =       struct.pack('f', vpw)
+    vsensitivity_s  =       struct.pack('f', vsensitivity)
+    vrp_s           =       struct.pack('H', vrp)
+    aamp_s          =       struct.pack('f', aamp)
+    apw_s           =       struct.pack('f', apw)
+    asensitivity_s  =       struct.pack('f', asensitivity)
+    arp_s           =       struct.pack('H', arp)
+    pvarp_s         =       struct.pack('H', pvarp)
+    mode_s          =       struct.pack('B', mode)
+
+    transmitPacket  = b'\x10' + lrl_s + url_s + vamp_s + vpw_s + vsensitivity_s + vrp_s + aamp_s + apw_s + asensitivity_s + arp_s + pvarp_s + mode_s
+
+    return transmitPacket, checksum
+
+def unpackReceiveData(data):
+
+    lrl_s           =       data[0]
+    url_s           =       data[1]
+    vamp_s          =       struct.unpack('f', data[2:6])[0]
+    vpw_s           =       struct.unpack('f', data[6:10])[0]
+    vsensitivity_s  =       struct.unpack('f', data[10:14])[0]
+    vrp_s           =       struct.unpack('H', data[14:16])[0]
+    aamp_s          =       struct.unpack('f', data[16:20])[0]
+    apw_s           =       struct.unpack('f', data[20:24])[0]
+    asensitivity_s  =       struct.unpack('f', data[24:28])[0]
+    arp_s           =       struct.unpack('H', data[28:30])[0]
+    pvarp_s         =       struct.unpack('H', data[30:32])[0]
+    mode_s          =       data[32]
+
+    receivePacket   = lrl_s + url_s + vamp_s + vpw_s + vsensitivity_s + vrp_s + aamp_s + apw_s + asensitivity_s + arp_s + pvarp_s + mode_s
+
+    return receivePacket
+
+def compareChecksum(transmit, receive):
+    
+    return transmit == receive
+    
+
 
 def main():
 
     ser = initializeSerial()
 
-    lrl = 120
+    lrl = 60
     url = 145
-    vamp = 2
+    vamp = 5
     vpw = 1
     vsensitivity = 2
     vrp = 330
@@ -86,11 +110,21 @@ def main():
     asensitivity = 2
     arp = 250
     pvarp = 1
-    mode = 2
+    mode = 4
 
-    transmit = packTransmitData(lrl, url, vamp, vpw, vsensitivity, vrp, aamp, apw, asensitivity, arp, pvarp, mode)
-    time.sleep(0.01)
-    ser.write(transmit)
+    checkCondition = False
+
+    while(not checkCondition):
+        transmit = packTransmitData(lrl, url, vamp, vpw, vsensitivity, vrp, aamp, apw, asensitivity, arp, pvarp, mode)
+        time.sleep(0.01)
+        ser.write(transmit[0])
+
+        time.sleep(0.05)
+        receive = unpackReceiveData(ser.read(33))
+        time.sleep(0.01)
+
+        checkCondition  = compareChecksum(transmit[1], receive)
+
     # while(1):
 
     deinitializeSerial(ser)
