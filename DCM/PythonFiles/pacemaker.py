@@ -306,6 +306,20 @@ def open_AAI(prev_page):
     heart_label = customtkinter.CTkLabel(master=frame, image = small_pixel_heart)
     heart_label.pack(pady=10, padx=10)
 
+def open_graph(prev_page):
+    graphPage = Toplevel()
+    graphPage.title("EKG Graph")
+    graphPage.geometry("")
+
+    frame = customtkinter.CTkFrame(master=graphPage)
+    frame.pack(pady=30, padx=60, fill="both", expand=True)
+
+    back_button = customtkinter.CTkButton(master=frame, text = "Back", command = lambda : [graphPage.destroy(),open_home(AAI_page)])
+    back_button.pack(pady=10, padx=10)
+
+    heart_label = customtkinter.CTkLabel(master=frame, image = small_pixel_heart)
+    heart_label.pack(pady=10, padx=10)
+
 
 #############################################################################################
 ######################### HOME PAGE #########################################################
@@ -335,6 +349,9 @@ def open_home(welcomePage):
 
     VVI_button = customtkinter.CTkButton(master=frame, text = "VVI", command = lambda : [home_page.destroy(),open_VVI(home_page)])
     VVI_button.pack(pady=12, padx=10)
+
+    graph_button = customtkinter.CTkButton(master=frame, text = "Egram", command = lambda : [home_page.destroy(),open_graph(home_page)])
+    graph_button.pack(pady=12, padx=10)
 
     back_button = customtkinter.CTkButton(master=frame, text = "Logout", command = lambda : [home_page.destroy(),welcome.deiconify()])
     back_button.pack(pady=12, padx=8)
@@ -455,6 +472,13 @@ def welcomePage():
     quit_button.pack(pady=10, padx=8)
 
     #picture details
+    global pic 
+    global heart 
+    global small_heart
+    global small_pixel_heart
+    global pixel_heart
+    global heart_label
+
     pic = Image.open(r"DCM\heart.png")
     heart = pic.resize((50,50), Image.ANTIALIAS)
     small_heart = pic.resize((20,20), Image.ANTIALIAS)
@@ -465,12 +489,6 @@ def welcomePage():
 
     welcome.mainloop()
 
-global pic
-global heart
-global small_heart
-global small_pixel_heart
-global pixel_heart
-global heart_label
 welcomePage()
 #You can create a tkinter variable like StringVar and set it as the textvariable of your Entry widget. 
 #Then you can access the content by calling the get method on the variable.

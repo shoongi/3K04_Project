@@ -1,6 +1,6 @@
 1. LRL must be lower than URL and vice versa
 2. Off, DDDR, VDDR, DDIR, DOOR, VOOR, AOOR, VVIR, AAIR, DDD, VDD, DDI, DOO, VVT and AAT
-3. Refactory period can't be negative, bigger than LRL, has to be less than pulse width amplitude 
+3. Refactory period can't be negative, less than 60000/LRL, has to be bigger than pulse width amplitude 
 4. Time is never negative
 5. Add modes and functionalities
 6. Serial communication
