@@ -1,13 +1,14 @@
 ert_main.o: \
  C:/3K04_Lab/3K04_Project/Pacemaker/Submission/Pacemaker_ert_rtw/ert_main.c \
  C:/3K04_Lab/3K04_Project/Pacemaker/Submission/Pacemaker_ert_rtw/Pacemaker.h \
- C:/3K04_Lab/3K04_Project/Pacemaker/Submission/Pacemaker_ert_rtw/rtwtypes.h \
+ C:/3K04_Lab/3K04_Project/Pacemaker/Submission/slprj/ert/_sharedutils/rtwtypes.h \
  C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_digitalIO.h \
  C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_SVD.h \
- C:/3K04_Lab/3K04_Project/Pacemaker/Submission/Pacemaker_ert_rtw/rtwtypes.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_SCI.h \
  C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_PWM.h \
  C:/3K04_Lab/3K04_Project/Pacemaker/Submission/Pacemaker_ert_rtw/Pacemaker_types.h \
  C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_SVD.h \
+ C:/3K04_Lab/3K04_Project/Pacemaker/Submission/slprj/ert/_sharedutils/echo_params.h \
  C:/3K04_Lab/3K04_Project/Pacemaker/Submission/Pacemaker_ert_rtw/Pacemaker_private.h \
  C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/board.h \
  C:/Freescale/KSDK_1.2.0/platform/devices/fsl_device_registers.h \
@@ -39,19 +40,21 @@ ert_main.o: \
 
 C:/3K04_Lab/3K04_Project/Pacemaker/Submission/Pacemaker_ert_rtw/Pacemaker.h:
 
-C:/3K04_Lab/3K04_Project/Pacemaker/Submission/Pacemaker_ert_rtw/rtwtypes.h:
+C:/3K04_Lab/3K04_Project/Pacemaker/Submission/slprj/ert/_sharedutils/rtwtypes.h:
 
 C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_digitalIO.h:
 
 C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_SVD.h:
 
-C:/3K04_Lab/3K04_Project/Pacemaker/Submission/Pacemaker_ert_rtw/rtwtypes.h:
+C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_SCI.h:
 
 C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_PWM.h:
 
 C:/3K04_Lab/3K04_Project/Pacemaker/Submission/Pacemaker_ert_rtw/Pacemaker_types.h:
 
 C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/freedomk64f/include/MW_SVD.h:
+
+C:/3K04_Lab/3K04_Project/Pacemaker/Submission/slprj/ert/_sharedutils/echo_params.h:
 
 C:/3K04_Lab/3K04_Project/Pacemaker/Submission/Pacemaker_ert_rtw/Pacemaker_private.h:
 

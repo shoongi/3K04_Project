@@ -5,11 +5,11 @@
  *
  * File: rtwtypes.h
  *
- * Code generated for Simulink model 'Pacemaker'.
+ * Code generated for Simulink model 'serial_test'.
  *
- * Model version                  : 5.36
+ * Model version                  : 5.1
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Sun Oct 23 20:37:10 2022
+ * C/C++ source code generated on : Mon Nov 21 16:28:51 2022
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex

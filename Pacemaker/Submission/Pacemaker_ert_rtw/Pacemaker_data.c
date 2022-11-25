@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'Pacemaker'.
  *
- * Model version                  : 5.36
+ * Model version                  : 5.70
  * Simulink Coder version         : 9.7 (R2022a) 13-Nov-2021
- * C/C++ source code generated on : Sun Oct 23 20:37:10 2022
+ * C/C++ source code generated on : Fri Nov 25 14:58:20 2022
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -21,31 +21,6 @@
 
 /* Block parameters (default storage) */
 P_Pacemaker_T Pacemaker_P = {
-  /* Mask Parameter: ModeSelect_Value
-   * Referenced by: '<S1>/Constant'
-   */
-  AAI,
-
-  /* Mask Parameter: ModeSelect4_Value
-   * Referenced by: '<S26>/Constant'
-   */
-  VOO,
-
-  /* Mask Parameter: ModeSelect2_Value
-   * Referenced by: '<S24>/Constant'
-   */
-  AOO,
-
-  /* Mask Parameter: ModeSelect3_Value
-   * Referenced by: '<S25>/Constant'
-   */
-  AAI,
-
-  /* Mask Parameter: ModeSelect5_Value
-   * Referenced by: '<S27>/Constant'
-   */
-  VVI,
-
   /* Expression: SampleTime
    * Referenced by: '<S3>/Digital Read'
    */
@@ -56,55 +31,10 @@ P_Pacemaker_T Pacemaker_P = {
    */
   -1.0,
 
-  /* Expression: 60
-   * Referenced by: '<S3>/LRL'
+  /* Expression: 0.1
+   * Referenced by: '<Root>/Serial Receive'
    */
-  60.0,
-
-  /* Expression: 1
-   * Referenced by: '<S3>/URL'
-   */
-  1.0,
-
-  /* Expression: 3
-   * Referenced by: '<S3>/VENT_AMP'
-   */
-  3.0,
-
-  /* Expression: 1
-   * Referenced by: '<S3>/VENT_PW'
-   */
-  1.0,
-
-  /* Expression: 1
-   * Referenced by: '<S3>/ATR_AMP'
-   */
-  1.0,
-
-  /* Expression: 3
-   * Referenced by: '<S3>/ATR_PW'
-   */
-  3.0,
-
-  /* Expression: 2
-   * Referenced by: '<S3>/ATR_SENSITIVITY'
-   */
-  2.0,
-
-  /* Expression: 250
-   * Referenced by: '<S3>/ARP'
-   */
-  250.0,
-
-  /* Expression: 2
-   * Referenced by: '<S3>/VENT_SENSITIVITY'
-   */
-  2.0,
-
-  /* Expression: 320
-   * Referenced by: '<S3>/VRP'
-   */
-  320.0,
+  0.1,
 
   /* Computed Parameter: PACING_REF_PWM_InitialOutput
    * Referenced by: '<S2>/PACING_REF_PWM'
@@ -144,7 +74,27 @@ P_Pacemaker_T Pacemaker_P = {
   /* Computed Parameter: FRONTEND_CTRL_InitialOutput
    * Referenced by: '<S2>/FRONTEND_CTRL'
    */
-  false
+  false,
+
+  /* Computed Parameter: Constant3_Value
+   * Referenced by: '<S5>/Constant3'
+   */
+  4U,
+
+  /* Computed Parameter: Constant1_Value
+   * Referenced by: '<S5>/Constant1'
+   */
+  2U,
+
+  /* Computed Parameter: Constant2_Value
+   * Referenced by: '<S5>/Constant2'
+   */
+  3U,
+
+  /* Computed Parameter: Constant4_Value
+   * Referenced by: '<S5>/Constant4'
+   */
+  5U
 };
 
 /*
