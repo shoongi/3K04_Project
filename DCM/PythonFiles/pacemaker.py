@@ -324,88 +324,88 @@ def open_VOOR(prev_page):
     url_label = customtkinter.CTkLabel(master=frame,text="Upper Rate Limit")
     url_label.pack(pady=0, padx=10)
     url_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_url) #User input gets saved to this variable
-    url_entry.pack(pady=8, padx=10)
+    url_entry.pack(pady=6, padx=10)
 
     save_button_url = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addURL(url_entry.get())) #Command should call corresponding function to add value, pass in the user input variable
-    save_button_url.pack(pady=10, padx=10)
+    save_button_url.pack(pady=6, padx=10)
 
     VOOR_lrl = 0 #VOORData.LRL
     lrl_label = customtkinter.CTkLabel(master=frame,text="Lower Rate Limit")
     lrl_label.pack(pady=0, padx=10)
     lrl_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_lrl)
-    lrl_entry.pack(pady=8, padx=10)
+    lrl_entry.pack(pady=6, padx=10)
 
     save_button_lrl = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addLRL(lrl_entry.get()))
-    save_button_lrl.pack(pady=10, padx=10)
+    save_button_lrl.pack(pady=6, padx=10)
 
     VOOR_msr = 0 #VOORData.MSR
     msr_label = customtkinter.CTkLabel(master=frame,text="Maximum Sensor Rate")
     msr_label.pack(pady=0, padx=10)
     msr_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_msr)
-    msr_entry.pack(pady=8, padx=10)
+    msr_entry.pack(pady=6, padx=10)
 
     save_button_msr = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addMSR(msr_entry.get()))
-    save_button_msr.pack(pady=10, padx=10)
+    save_button_msr.pack(pady=6, padx=10)
 
     VOOR_VA = 0 #VOORData.VA
     ventricular_amplitude_label = customtkinter.CTkLabel(master=frame,text="Ventricular Amplitude")
     ventricular_amplitude_label.pack(pady=0, padx=10)
     ventricular_amplitude_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_VA)
-    ventricular_amplitude_entry.pack(pady=8, padx=10)
+    ventricular_amplitude_entry.pack(pady=6, padx=10)
 
     save_button_VA = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addVA(ventricular_amplitude_entry.get()))
-    save_button_VA.pack(pady=10, padx=10)
+    save_button_VA.pack(pady=6, padx=10)
 
     VOOR_VPW = 0 #VOORData.VPW
     ventricular_pulse_width_label = customtkinter.CTkLabel(master=frame,text="Ventricular Pulse Width")
     ventricular_pulse_width_label.pack(pady=0, padx=10)
     ventricular_pulse_width_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_VPW)
-    ventricular_pulse_width_entry.pack(pady=8, padx=10)
+    ventricular_pulse_width_entry.pack(pady=6, padx=10)
 
     save_button_VPW = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addVPW(ventricular_pulse_width_entry.get()))
-    save_button_VPW.pack(pady=10, padx=10)
+    save_button_VPW.pack(pady=6, padx=10)
 
     VOOR_at = 0 #VOORData.AT
     at_label = customtkinter.CTkLabel(master=frame,text="Activity Threshold")
     at_label.pack(pady=0, padx=10)
     at_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_at)
-    at_entry.pack(pady=8, padx=10)
+    at_entry.pack(pady=6, padx=10)
 
     save_button_at = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addAT(at_entry.get()))
-    save_button_at.pack(pady=10, padx=10)
+    save_button_at.pack(pady=6, padx=10)
 
     VOOR_reaction = 0 #VOORData.reaction
     reaction_label = customtkinter.CTkLabel(master=frame,text="Reaction Time")
     reaction_label.pack(pady=0, padx=10)
     reaction_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_reaction)
-    reaction_entry.pack(pady=8, padx=10)
+    reaction_entry.pack(pady=6, padx=10)
 
     save_button_rt = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addreaction(reaction_entry.get()))
-    save_button_rt.pack(pady=10, padx=10)
+    save_button_rt.pack(pady=6, padx=10)
 
     VOOR_rf = 0 #VOORData.RF
     rf_label = customtkinter.CTkLabel(master=frame,text="Response Factor")
     rf_label.pack(pady=0, padx=10)
     rf_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_rf)
-    rf_entry.pack(pady=8, padx=10)
+    rf_entry.pack(pady=6, padx=10)
 
     save_button_rf = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addRF(rf_entry.get()))
-    save_button_rf.pack(pady=10, padx=10)
+    save_button_rf.pack(pady=6, padx=10)
 
     VOOR_recovery = 0 #VOORData.RECOVERY
     recovery_label = customtkinter.CTkLabel(master=frame,text="Recovery Time")
     recovery_label.pack(pady=0, padx=10)
     recovery_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_recovery)
-    recovery_entry.pack(pady=8, padx=10)
+    recovery_entry.pack(pady=6, padx=10)
 
     save_button_recovery = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addRECOVERY(recovery_entry.get()))
-    save_button_recovery.pack(pady=10, padx=10)
+    save_button_recovery.pack(pady=6, padx=10)
 
     back_button = customtkinter.CTkButton(master=frame, text = "Back", command = lambda : [VOOR_page.destroy(),open_home(VOOR_page)])
-    back_button.pack(pady=10, padx=10)
+    back_button.pack(pady=6, padx=10)
 
     heart_label = customtkinter.CTkLabel(master=frame, image = small_pixel_heart)
-    heart_label.pack(pady=10, padx=10)
+    heart_label.pack(pady=6, padx=10)
 
 def open_graph(prev_page):
     graphPage = Toplevel()
