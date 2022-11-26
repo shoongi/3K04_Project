@@ -1,5 +1,10 @@
 import database
 import parameters
+import serial_comm
+import time
+import serial
+
+
 class AOO:
     def __init__(self,name):
         self.name = name
@@ -80,6 +85,25 @@ class AOO:
         print("Saving")
         print(self.AOOData)
         self.userData.saveParam(self.AOOData)
+
+        self.loadAOO()
+
+        ser = serial_comm.initializeSerial()
+        checkCondition = False
+
+        while(not checkCondition):
+            transmit = serial_comm.packTransmitData(int(self.LRL), int(self.URL), 0, 0, 2, 330, float(self.AA), float(self.APW), 2, 250, 1, 2)
+            time.sleep(0.01)
+            ser.write(transmit[0])
+
+            time.sleep(0.05)
+            data = ser.read(34)
+            
+            receive = serial_comm.unpackReceiveData(data)
+            time.sleep(0.01)
+
+            checkCondition  = serial_comm.compareChecksum(transmit[1], receive)
+        serial_comm.deinitializeSerial(ser)
 
 ####################################################################################################################################
 ####################################################################################################################################
@@ -165,6 +189,26 @@ class VOO:
         print("Saving")
         print(self.VOOData)
         self.userData.saveParam(self.VOOData)
+
+        self.loadVOO()
+
+        ser = serial_comm.initializeSerial()
+        checkCondition = False
+
+        while(not checkCondition):
+            transmit = serial_comm.packTransmitData(int(self.LRL), int(self.URL), float(self.VA), float(self.VPW), 2, 330, 5, 2, 2, 250, 1, 4)
+            time.sleep(0.01)
+            ser.write(transmit[0])
+
+            time.sleep(0.05)
+            data = ser.read(34)
+
+            receive = serial_comm.unpackReceiveData(data)
+            time.sleep(0.01)
+
+            checkCondition  = serial_comm.compareChecksum(transmit[1], receive)
+        serial_comm.deinitializeSerial(ser)
+        
 
 ####################################################################################################################################
 ####################################################################################################################################
@@ -265,6 +309,25 @@ class AAI:
         print(self.AAIData)
         self.userData.saveParam(self.AAIData)
 
+        self.loadAAI()
+
+        ser = serial_comm.initializeSerial()
+        checkCondition = False
+
+        while(not checkCondition):
+            transmit = serial_comm.packTransmitData(int(self.LRL), int(self.URL), 0, 0, 2, 330, float(self.AA), float(self.APW), 2, float(self.ARP), 1, 3)
+            time.sleep(0.01)
+            ser.write(transmit[0])
+
+            time.sleep(0.05)
+            data = ser.read(34)
+            
+            receive = serial_comm.unpackReceiveData(data)
+            time.sleep(0.01)
+
+            checkCondition  = serial_comm.compareChecksum(transmit[1], receive)
+        serial_comm.deinitializeSerial(ser)
+
 ####################################################################################################################################
 ####################################################################################################################################
 ####################################################################################################################################
@@ -363,3 +426,23 @@ class VVI:
         print("Saving")
         print(self.VVIData)
         self.userData.saveParam(self.VVIData)
+
+        
+        self.loadVVI()
+
+        ser = serial_comm.initializeSerial()
+        checkCondition = False
+
+        while(not checkCondition):
+            transmit = serial_comm.packTransmitData(int(self.LRL), int(self.URL), float(self.VA), float(self.VPW), 2, float(self.VRP), 5, 2, 2, 250, 1, 5)
+            time.sleep(0.01)
+            ser.write(transmit[0])
+
+            time.sleep(0.05)
+            data = ser.read(34)
+            
+            receive = serial_comm.unpackReceiveData(data)
+            time.sleep(0.01)
+
+            checkCondition  = serial_comm.compareChecksum(transmit[1], receive)
+        serial_comm.deinitializeSerial(ser)
