@@ -85,13 +85,14 @@ def unpackReceiveData(data):
     pvarp_s         =       struct.unpack('H', data[30:32])[0]
     mode_s          =       data[32]
 
+
     receivePacket   = lrl_s + url_s + vamp_s + vpw_s + vsensitivity_s + vrp_s + aamp_s + apw_s + asensitivity_s + arp_s + pvarp_s + mode_s
 
     return receivePacket
 
 def compareChecksum(transmit, receive):
     
-    return transmit == receive
+    return int(transmit) == int(receive)
     
 
 
@@ -99,7 +100,7 @@ def main():
 
     ser = initializeSerial()
 
-    lrl = 60
+    lrl = 20
     url = 145
     vamp = 5
     vpw = 1
@@ -112,6 +113,7 @@ def main():
     pvarp = 1
     mode = 4
 
+
     checkCondition = False
 
     while(not checkCondition):
@@ -122,6 +124,7 @@ def main():
         time.sleep(0.05)
         receive = unpackReceiveData(ser.read(33))
         time.sleep(0.01)
+        
 
         checkCondition  = compareChecksum(transmit[1], receive)
 

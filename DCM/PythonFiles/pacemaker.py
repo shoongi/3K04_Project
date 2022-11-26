@@ -587,7 +587,7 @@ def welcomePage():
     global pixel_heart
     global heart_label
 
-    pic = Image.open(r"DCM\heart.png")
+    pic = Image.open(r"C:\3K04_Lab\3K04_Project\DCM\heart.png")
     heart = pic.resize((50,50), Image.ANTIALIAS)
     small_heart = pic.resize((20,20), Image.ANTIALIAS)
     small_pixel_heart = ImageTk.PhotoImage(small_heart)
