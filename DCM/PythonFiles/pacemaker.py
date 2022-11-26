@@ -504,7 +504,16 @@ def open_graph(prev_page):
 
 
     ###############################################
-    back_button = customtkinter.CTkButton(master=frame, text = "Back", command = lambda : [graphPage.destroy(),open_home(graphPage)])
+    ven_button = customtkinter.CTkButton(master=frame, text = "Ventrical", command = lambda : ["Call Function needed"])
+    ven_button.pack(pady=10, padx=10)
+
+    atrial_button = customtkinter.CTkButton(master=frame, text = "Atrium", command = lambda : ["Call Function needed"])
+    atrial_button.pack(pady=10, padx=10)
+
+    both_button = customtkinter.CTkButton(master=frame, text = "Both", command = lambda : ["Call Function needed"])
+    both_button.pack(pady=10, padx=10)
+
+    back_button = customtkinter.CTkButton(master=frame, text = "Ventrical", command = lambda : [graphPage.destroy(),open_home(graphPage)])
     back_button.pack(pady=10, padx=10)
 
     heart_label = customtkinter.CTkLabel(master=frame, image = small_pixel_heart)
