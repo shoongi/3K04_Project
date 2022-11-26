@@ -119,6 +119,76 @@ def addRecTime(self, userInputTime):
     else:
         return False, "Recovery Time must be between 2 and 16"
 
+def addSensitivity(self, inputSens):
+    try:
+        sens = float(inputSens)
+    except:
+        return False, "Sensitivity must be a number"
+    if (sens == 0.25 or sens == 0.5 or sens == 0.75):
+        return True, "Good"
+    elif (sens >= 1 and sens <= 10):
+        if (sens % 0.5 == 0):
+            return True, "Good"
+        else:
+            return False, "Senitivity must be increment of 0.5"
+    else:
+        return False, "sensitivity must be 0.25, 0.5, 0.75 or between 1 and 10"
+
+def addPVARP(self, inputPVARP):
+    try:
+        PVARP = float(inputPVARP)
+    except:
+        return False, "PVARP must be a number"
+    if (PVARP >= 150 and PVARP <= 500):
+        if (PVARP % 10 == 0):
+            return True, "Good"
+        else:
+            return False, "PVARP must be increment of 10"
+    else:
+        return False, "PVARP must be between 150 and 500"
+
+def addHysterisis(self, input):
+    try:
+        hysterisis = float(input)
+
+        if (hysterisis >= 30 and hysterisis <= 50):
+            if (hysterisis % 5 == 0):
+                print("Added hysterisis")
+                return True,"Good"
+            else:
+                print("hysterisis must be an increment of 5")
+                return False,"hysterisis must be an increment of 5"
+        elif (hysterisis >= 50 and hysterisis <= 90):
+            if (hysterisis % 1 == 0):
+                print("Added hysterisis")
+                return True,"Good"
+            else:
+                print("hysterisis must be an increment of 1")
+                return False,"hysterisis must be an increment of 1"
+        elif (hysterisis >= 90 and hysterisis <= 175):
+            if (hysterisis % 5 == 0):
+                print("Added hysterisis")
+                return True,"Good"
+            else:
+                print("hysterisis must be an increment of 5")
+                return False,"hysterisis must be an increment of 5"
+        else:
+            print("hysterisis not within range of 30-175")
+            return False, "hysterisis not within range of 30-175"
+    except:
+        if (input == "off"):
+            return True, "Good"
+        else:
+            return False, "Hysterisis must be off or within range of 30-175"
+
+def addSmoothing(self, input):
+    acceptable = ["off", "3", "6", "9", "12", "15", "18", "21", "25"]
+
+    if (input in acceptable):
+        return True, "Good"
+    else:
+        return False, "Smoothing must be one of off, 3, 6, 9, 12, 15, 18, 21, 25"
+
 ##################################################################################################################################
 ############################ ATRIUM STUFF ########################################################################################
 ##################################################################################################################################

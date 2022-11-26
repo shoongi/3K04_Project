@@ -396,7 +396,7 @@ def open_VOOR(prev_page):
     back_button.grid(row = 9,column = 1, pady=10, padx=10)
 
     heart_label = customtkinter.CTkLabel(master=frame, image = small_pixel_heart)
-    heart_label.pack(row = 10,column = 1, pady=10, padx=10pady=10, padx=10)
+    heart_label.pack(row = 10,column = 1, pady=10, padx=10)
 
 def open_graph(prev_page):
     graphPage = Toplevel()
