@@ -398,6 +398,98 @@ def open_VOOR(prev_page):
     heart_label = customtkinter.CTkLabel(master=frame, image = small_pixel_heart)
     heart_label.pack(row = 10,column = 1, pady=10, padx=10)
 
+def open_AOOR(prev_page):
+    #intialize VOO page
+    global AOOR_page
+    AOOR_page = Toplevel()
+    AOOR_page.title('AOOR')
+    AOOR_page.geometry("620x680")
+    frame = customtkinter.CTkFrame(master=AOOR_page)
+    frame.pack(pady=30, padx=60, fill="both", expand=True)
+
+    #VOORData = modes.VOOR(loginUser.getName())
+    #VOORData.loadVOOR()
+
+    #Create entries and labels for all programmable parameters and assign the entry text to variables
+    AOOR_url = 0 #AOORData.URL
+    url_label = customtkinter.CTkLabel(master=frame,text="Upper Rate Limit")
+    url_label.grid(row = 0,column = 0, pady=10, padx=10)
+    url_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_url) #User input gets saved to this variable
+    url_entry.grid(row = 0,column = 1, pady=10, padx=10)
+    save_button_url = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addURL(url_entry.get())) #Command should call corresponding function to add value, pass in the user input variable
+    save_button_url.grid(row = 0,column = 2, pady=10, padx=10)
+
+    AOOR_lrl = 0 #AOORData.LRL
+    lrl_label = customtkinter.CTkLabel(master=frame,text="Lower Rate Limit")
+    lrl_label.grid(row = 1,column = 0, pady=10, padx=10)
+    lrl_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_lrl)
+    lrl_entry.grid(row = 1,column = 1, pady=10, padx=10)
+    save_button_lrl = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addLRL(lrl_entry.get()))
+    save_button_lrl.grid(row = 1,column = 2, pady=10, padx=10)
+
+    AOOR_msr = 0 #AOORData.MSR
+    msr_label = customtkinter.CTkLabel(master=frame,text="Maximum Sensor Rate")
+    msr_label.grid(row = 2,column = 0, pady=10, padx=10)
+    msr_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_msr)
+    msr_entry.grid(row = 2,column = 1, pady=10, padx=10)
+    save_button_msr = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addMSR(msr_entry.get()))
+    save_button_msr.grid(row = 2,column = 2, pady=10, padx=10)
+
+    AOOR_AA = 0 #AOORData.AA
+    atrial_amplitude_label = customtkinter.CTkLabel(master=frame,text="Atrial Amplitude")
+    atrial_amplitude_label.grid(row = 3, column = 0, pady=10, padx=10)
+    atrial_amplitude_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_AA)
+    atrial_amplitude_entry.grid(row = 3, column = 1, pady=10, padx=10)
+    save_button_AA = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addAA(atrial_amplitude_entry.get()))
+    save_button_AA.grid(row = 3, column = 2, pady=10, padx=10)
+
+    AOOR_APW = 0 # AOORData.APW
+    atrial_pulse_width_label = customtkinter.CTkLabel(master=frame,text="Atrial Pulse Width")
+    atrial_pulse_width_label.grid(row = 4, column = 0, pady=10, padx=10)
+    atrial_pulse_width_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_APW)
+    atrial_pulse_width_entry.grid(row = 4, column = 1, pady=10, padx=10)
+    save_button_APW = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addAPW(atrial_pulse_width_entry.get()))
+    save_button_APW.grid(row = 4, column = 2, pady=10, padx=10)
+
+    AOOR_at = 0 #AOORData.AT
+    at_label = customtkinter.CTkLabel(master=frame,text="Activity Threshold")
+    at_label.grid(row = 5,column = 0, pady=10, padx=10)
+    at_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_at)
+    at_entry.grid(row = 5,column = 1, pady=10, padx=10)
+    save_button_at = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addAT(at_entry.get()))
+    save_button_at.grid(row = 5,column = 2, pady=10, padx=10)
+
+    AOOR_reaction = 0 #VOORData.reaction
+    reaction_label = customtkinter.CTkLabel(master=frame,text="Reaction Time")
+    reaction_label.grid(row = 6,column = 0, pady=10, padx=10)
+    reaction_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_reaction)
+    reaction_entry.grid(row = 6,column = 1, pady=10, padx=10)
+    save_button_rt = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addreaction(reaction_entry.get()))
+    save_button_rt.grid(row = 6,column = 2, pady=10, padx=10)
+
+    AOOR_rf = 0 #VOORData.RF
+    rf_label = customtkinter.CTkLabel(master=frame,text="Response Factor")
+    rf_label.grid(row = 7,column = 0, pady=10, padx=10)
+    rf_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_rf)
+    rf_entry.grid(row = 7,column = 1, pady=10, padx=10)
+    save_button_rf = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addRF(rf_entry.get()))
+    save_button_rf.grid(row = 7,column = 2, pady=10, padx=10)
+
+    AOOR_recovery = 0 #VOORData.RECOVERY
+    recovery_label = customtkinter.CTkLabel(master=frame,text="Recovery Time")
+    recovery_label.grid(row = 8,column = 0, pady=10, padx=10)
+    recovery_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_recovery)
+    recovery_entry.grid(row = 8,column = 1, pady=10, padx=10)
+    save_button_recovery = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addRECOVERY(recovery_entry.get()))
+    save_button_recovery.grid(row = 8,column = 2, pady=10, padx=10)
+
+    back_button = customtkinter.CTkButton(master=frame, text = "Back", command = lambda : [AOOR_page.destroy(),open_home(AOOR_page)])
+    back_button.grid(row = 9,column = 1, pady=10, padx=10)
+    
+    heart_label = customtkinter.CTkLabel(master=frame, image = small_pixel_heart)
+    heart_label.pack(row = 10,column = 1, pady=10, padx=10)
+
+
 def open_graph(prev_page):
     graphPage = Toplevel()
     graphPage.title("EKG Graph")
@@ -406,6 +498,12 @@ def open_graph(prev_page):
     frame = customtkinter.CTkFrame(master=graphPage)
     frame.pack(pady=30, padx=60, fill="both", expand=True)
 
+    ##############################################
+
+
+
+
+    ###############################################
     back_button = customtkinter.CTkButton(master=frame, text = "Back", command = lambda : [graphPage.destroy(),open_home(graphPage)])
     back_button.pack(pady=10, padx=10)
 
@@ -440,8 +538,8 @@ def open_home(welcomePage):
     VVI_button = customtkinter.CTkButton(master=frame, text = "VVI", command = lambda : [home_page.destroy(),open_VVI(home_page)])
     VVI_button.pack(pady=12, padx=10)
 
-    #AOOR_button = customtkinter.CTkButton(master=frame, text = "AOOR", command = lambda : [home_page.destroy(),open_AOOR(home_page)])
-    #AOO_button.pack(pady=12, padx=10)
+    AOOR_button = customtkinter.CTkButton(master=frame, text = "AOOR", command = lambda : [home_page.destroy(),open_AOOR(home_page)])
+    AOOR_button.pack(pady=12, padx=10)
 
     VOOR_button = customtkinter.CTkButton(master=frame, text = "VOOR", command = lambda : [home_page.destroy(),open_VOOR(home_page)])
     VOOR_button.pack(pady=12, padx=10)
@@ -452,6 +550,9 @@ def open_home(welcomePage):
     #VVIR_button = customtkinter.CTkButton(master=frame, text = "VVIR", command = lambda : [home_page.destroy(),open_VVIR(home_page)])
     #VVI_button.pack(pady=12, padx=10)
 
+    graph_button = customtkinter.CTkButton(master=frame, text = "Egram", command = lambda : [home_page.destroy(),open_graph(home_page)])
+    graph_button.pack(pady=12, padx=10)
+
     back_button = customtkinter.CTkButton(master=frame, text = "Logout", command = lambda : [home_page.destroy(),welcome.deiconify()])
     back_button.pack(pady=12, padx=8)
 
@@ -460,6 +561,7 @@ def open_home(welcomePage):
 
     heart_label = customtkinter.CTkLabel(master=frame, image = small_pixel_heart)
     heart_label.pack(pady=12, padx=10)
+    
     
 #aoo voo aai vvi aoor voor aair vvir
 ###################################################################
