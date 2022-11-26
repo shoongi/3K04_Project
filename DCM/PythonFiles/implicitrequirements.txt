@@ -4,4 +4,19 @@
 4. Time is never negative
 5. Add modes and functionalities
 6. Serial communication
-7. Hysterisis, Rate Smoothing, PVARP, Atrial Sensitivity, 
+7. Hysterisis, Rate Smoothing, PVARP, Atrial Sensitivity
+
+AOO: LRL, URL, AA, APW GOOD
+VOO: LRL, URL, VA, VPW GOOD
+
+AAI: Atrial Sens, PVARP, Hysteresis, Rate Smoothing
+
+VVI: LRL, URL, VA, VPW, Ventricular Sens, VRP, Hysteresis, Rate Smoothing
+
+AOOR: LRL, URL, Max Sens Rate, AA, APW, Aact Thres, React Time,Response Fact, Rec Time
+
+AAIR: LRL, URL, Max Sens Rate, AA, APW, Atrail Sens, ARP, PVARP, hysterisis, rate smoothing, Activity Thres, React time, response fact, rec time
+
+VOOR: LRL, URL, Max Sens Rate, Vn Amp, VPW, Act Thres, React Time, Resp Fact, Rec Time
+
+VVIR: LRL, URL, Max Sens Rate, Ven Amp, VPW, Ven Sens, VRP, Hysterisis, Rate smoothing, Act Thres, React time, Resp Fact, Rec Time
