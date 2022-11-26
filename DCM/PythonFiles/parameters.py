@@ -1,6 +1,8 @@
 def addLRL(self,inputLRL):
-    LRL = int(inputLRL)
-    print(LRL)
+    try:
+        LRL = float(inputLRL)
+    except:
+        return False, "LRL must be a number"
     if (LRL < self.URL):
         if (LRL >= 30 and LRL <= 50):
             if (LRL % 5 == 0):
@@ -34,7 +36,10 @@ def addLRL(self,inputLRL):
         return False, "LRL is greater than the URL"
 
 def addURL(self,inputURL):
-    URL = int(inputURL)
+    try:
+        URL = float(inputURL)
+    except:
+        return False, "URL must be a number"
     if (URL > self.LRL):
         if (URL >= 50 and URL <= 175):
             if (URL % 5 == 0):
@@ -49,7 +54,10 @@ def addURL(self,inputURL):
         return False, "URL is smaller than the LRL"
 
 def addmaxSenRate(self, inputSen):
-    senRate = int(inputSen)
+    try:
+        senRate = float(inputSen)
+    except:
+        return False, "Sensor Rate must be a number"
     if (senRate >= 50 and senRate <= 175):
         if (senRate % 5 == 0):
             self.senRate = senRate
@@ -69,7 +77,11 @@ def addActThres(self, inputAct):
     else:
         return False, "Must be one of V-Low", "Low", "Med-Low", "Med", "Med-High", "High", "V-High"
 
-def addReactTime(self, inputTime):
+def addReactTime(self, userInputTime):
+    try:
+        inputTime = float(userInputTime)
+    except:
+        return False, "Reaction Time must be a number"
     if (inputTime >= 10 and inputTime <= 50):
         if (inputTime % 10 == 0):
             self.reactTime = inputTime
@@ -79,7 +91,11 @@ def addReactTime(self, inputTime):
     else:
         return False, "Must be within bounds of 10s-50s"
 
-def addRespFact(self, inputFactor):
+def addRespFact(self, userInputFactor):
+    try:
+        inputFactor = float(userInputFactor)
+    except:
+        return False, "Response Factor must be a number"
     if (inputFactor >= 1 and inputFactor <= 16):
         if (inputFactor % 1 == 0):
             self.respFact = inputFactor
@@ -89,7 +105,11 @@ def addRespFact(self, inputFactor):
     else:
         return False, "Response Factor must be between 1 and 16"
 
-def addRecTime(self, inputTime):
+def addRecTime(self, userInputTime):
+    try:
+        inputTime = float(userInputTime)
+    except:
+        return False, "Recovery Time must be a number"
     if (inputTime >= 2 and inputTime <= 16):
         if (inputTime % 1 == 0):
             self.recTime = inputTime

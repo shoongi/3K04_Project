@@ -4,3 +4,4 @@
 4. Time is never negative
 5. Add modes and functionalities
 6. Serial communication
+7. Hysterisis, Rate Smoothing, PVARP, Atrial Sensitivity, 
