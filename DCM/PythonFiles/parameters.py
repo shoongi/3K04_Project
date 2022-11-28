@@ -1,9 +1,7 @@
 def addLRL(self,inputLRL):
-    try:
-        LRL = float(inputLRL)
-    except:
-        return False, "LRL must be a number"
-    if (LRL < self.URL):
+    LRL = float(inputLRL)
+
+    if (LRL < float(self.URL)):
         if (LRL >= 30 and LRL <= 50):
             if (LRL % 5 == 0):
                 self.LRL = LRL
@@ -40,7 +38,7 @@ def addURL(self,inputURL):
         URL = float(inputURL)
     except:
         return False, "URL must be a number"
-    if (URL > self.LRL):
+    if (URL > float(self.LRL)):
         if (URL >= 50 and URL <= 175):
             if (URL % 5 == 0):
                 self.URL = URL
@@ -197,7 +195,7 @@ def addAA(self,inputAA):
     try:
         AA = float(inputAA)
         if (AA >= 0.5 and AA <= 3.2):
-            if (AA % 0.1 == 0):
+            if ((AA / 0.1) == int (AA / 0.1)):
                 self.AA = AA
                 print("Added AA")
                 return True, "Good"
@@ -249,12 +247,12 @@ def addAPW(self,inputAPW):
 
 def addARP(self,inputARP):
     ARP = int(inputARP)
-    if (ARP >= 150 or ARP <= 500):
-        if (ARP < self.LRL):
-            print ("ARP must be larger than the LRL")
+    if (ARP >= 150 and ARP <= 500):
+        if (ARP > 60000/float(self.LRL)):
+            print ("ARP must be smaller than the LRL")
             return False, "ARP must be larger than the LRL"
-        if (ARP > self.APW):
-            print ("ARP must be less than the APW")
+        if (ARP < float(self.APW)):
+            print ("ARP must be greater than the APW")
             return False, "ARP must be less than the APW"
         if (ARP % 10 == 0):
             self.ARP = ARP
@@ -273,7 +271,7 @@ def addVA(self,inputVA):
     try:
         VA = float(inputVA)
         if (VA >= 0.5 and VA <= 3.2):
-            if (VA % 0.1 == 0):
+            if ((VA / 0.1) == int (VA / 0.1)):
                 self.VA = VA
                 print("Added VA")
                 return True, "Good"
@@ -323,12 +321,12 @@ def addVPW(self,inputVPW):
 
 def addVRP(self,inputVRP):
     VRP = int(inputVRP)
-    if (VRP >= 150 or VRP <= 500):
-        if (VRP < self.LRL):
-            print ("VRP must be larger than the LRL")
+    if (VRP >= 150 and VRP <= 500):
+        if (VRP > 60000/float(self.LRL)):
+            print ("VRP must be smaller than the LRL")
             return False, "VRP must be larger than the LRL"
-        if (VRP > self.VPW):
-            print ("VRP must be less than the VPW")
+        if (VRP < float(self.VPW)):
+            print ("VRP must be larger than the VPW")
             return False, "VRP must be less than the VPW"
         if (VRP % 10 == 0):
             self.VRP = VRP

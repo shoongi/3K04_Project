@@ -188,28 +188,28 @@ def open_VVI(prev_page):
     save_button_VRP = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VVIData.addVRP(VRP_entry.get()))
     save_button_VRP.grid(row=4, column=2, pady=10, padx=10)
 
-    VVI_VS = StringVar()
+    VVI_VS = VVIData.sensitivity
     ventricular_sensitivity_label = customtkinter.CTkLabel(master=frame,text="Ventricular Sensitivity")
     ventricular_sensitivity_label.grid(row=5, column=0, pady=10, padx=10)
     ventricular_sensitivity_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVI_VS)
     ventricular_sensitivity_entry.grid(row=5, column=1, pady=10, padx=10)
-    save_button_VS = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VVIData.add(ventricular_sensitivity_entry.get()))
+    save_button_VS = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VVIData.addSensitivity(ventricular_sensitivity_entry.get()))
     save_button_VS.grid(row=5, column=2, pady=10, padx=10)
 
-    VVI_H = StringVar()
+    VVI_H = VVIData.hysteresis
     hysterisis_label = customtkinter.CTkLabel(master=frame,text="Hysterisis")
     hysterisis_label.grid(row=6, column=0, pady=10, padx=10)
     hysterisis_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVI_H)
     hysterisis_entry.grid(row=6, column=1, pady=10, padx=10)
-    save_button_H = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VVIData.add(hysterisis_entry.get()))
+    save_button_H = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VVIData.addHysteresis(hysterisis_entry.get()))
     save_button_H.grid(row=6, column=2, pady=10, padx=10)
 
-    VVI_RS = StringVar()
+    VVI_RS = VVIData.smoothing
     rate_smoothing_label = customtkinter.CTkLabel(master=frame,text="Rate Smoothing")
     rate_smoothing_label.grid(row=7, column=0, pady=10, padx=10)
     rate_smoothing_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVI_RS)
     rate_smoothing_entry.grid(row=7, column=1, pady=10, padx=10)
-    save_button_RS = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VVIData.add(rate_smoothing_entry.get()))
+    save_button_RS = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VVIData.addSmoothing(rate_smoothing_entry.get()))
     save_button_RS.grid(row=7, column=2, pady=10, padx=10)
 
     #we need to open home page
@@ -274,28 +274,28 @@ def open_AAI(prev_page):
     save_button_ARP = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AAIData.addARP(atrial_refactory_period_entry.get()))
     save_button_ARP.grid(row=4, column=2, pady=10, padx=10)
 
-    AAI_AS = StringVar()
+    AAI_AS = AAIData.sensitivity
     atrial_sensitivity_label = customtkinter.CTkLabel(master=frame,text="Atrial Sensitivity")
     atrial_sensitivity_label.grid(row=5, column=0, pady=10, padx=10)
-    atrial_sensitivity_entry = customtkinter.CTkEntry(master=frame, placeholder_text="HERE IS A PLACEHOLDER", textvariable=AAI_AS)
+    atrial_sensitivity_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAI_AS)
     atrial_sensitivity_entry.grid(row=5, column=1, pady=10, padx=10)
-    save_button_AS = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AAIData.add(atrial_sensitivity_entry.get()))
+    save_button_AS = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AAIData.addSensitivity(atrial_sensitivity_entry.get()))
     save_button_AS.grid(row=5, column=2, pady=10, padx=10)
 
-    AAI_H = StringVar()
+    AAI_H = AAIData.hysteresis
     hysterisis_label = customtkinter.CTkLabel(master=frame,text="Hysterisis")
     hysterisis_label.grid(row=6, column=0, pady=10, padx=10)
-    hysterisis_entry = customtkinter.CTkEntry(master=frame, placeholder_text="HERE IS A PLACEHOLDER", textvariable=AAI_H)
+    hysterisis_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAI_H)
     hysterisis_entry.grid(row=6, column=1, pady=10, padx=10)
-    save_button_H = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AAIData.add(hysterisis_entry.get()))
+    save_button_H = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AAIData.addHysteresis(hysterisis_entry.get()))
     save_button_H.grid(row=6, column=2, pady=10, padx=10)
 
-    AAI_RS = StringVar()
+    AAI_RS = AAIData.smoothing
     rate_smoothing_label = customtkinter.CTkLabel(master=frame,text="Rate Smoothing")
     rate_smoothing_label.grid(row=7, column=0, pady=10, padx=10)
-    rate_smoothing_entry = customtkinter.CTkEntry(master=frame, placeholder_text="HERE IS A PLACEHOLDER", textvariable = AAI_RS)
+    rate_smoothing_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAI_RS)
     rate_smoothing_entry.grid(row=7, column=1, pady=10, padx=10)
-    save_button_RS = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AAIData.add(rate_smoothing_entry.get()))
+    save_button_RS = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AAIData.addSmoothing(rate_smoothing_entry.get()))
     save_button_RS.grid(row=7, column=2, pady=10, padx=10)
 
     back_button = customtkinter.CTkButton(master=frame, text = "Back", command = lambda : [AAI_page.destroy(),open_home(AAI_page)])
@@ -314,11 +314,11 @@ def open_VVIR(prev_page):
     frame = customtkinter.CTkFrame(master=VVIR_page)
     frame.pack(pady=30, padx=60, fill="both", expand=True)
 
-    # VVIRData = modes.VVIR(loginUser.getName())
-    # VVIRData.loadVVIR()
+    VVIRData = modes.VVIR(loginUser.getName())
+    VVIRData.loadVVIR()
 
     # Create entries for all programmable parameters and assign the entry text to variables
-    VVIR_url = 0  # VVIRData.URL
+    VVIR_url = VVIRData.URL
     url_label = customtkinter.CTkLabel(master=frame, text="Upper Rate Limit")
     url_label.grid(row=0, column=0, pady=10, padx=10)
     url_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVIR_url)
@@ -326,7 +326,7 @@ def open_VVIR(prev_page):
     save_button_url = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.addURL(url_entry.get()))
     save_button_url.grid(row=0, column=2, pady=10, padx=10)
 
-    VVIR_lrl = 0  # VVIRData.LRL
+    VVIR_lrl = VVIRData.LRL
     lrl_label = customtkinter.CTkLabel(master=frame, text="Lower Rate Limit")
     lrl_label.grid(row=1, column=0, pady=10, padx=10)
     lrl_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVIR_lrl)
@@ -334,15 +334,15 @@ def open_VVIR(prev_page):
     save_button_lrl = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.addLRL(lrl_entry.get()))
     save_button_lrl.grid(row=1, column=2, pady=10, padx=10)
 
-    VVIR_msr = 0  # VVIRData.MSR
+    VVIR_msr = VVIRData.sensorRate
     msr_label = customtkinter.CTkLabel(master=frame, text="Maximum Sensor Rate")
     msr_label.grid(row=2, column=0, pady=10, padx=10)
     msr_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVIR_msr)
     msr_entry.grid(row=2, column=1, pady=10, padx=10)
-    save_button_msr = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.addMSR(msr_entry.get()))
+    save_button_msr = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.addSensRate(msr_entry.get()))
     save_button_msr.grid(row=2, column=2, pady=10, padx=10)
 
-    VVIR_VA = 0  # VVIRData.VA
+    VVIR_VA = VVIRData.VA
     ventricular_amplitude_label = customtkinter.CTkLabel(master=frame, text="Ventricular Amplitude")
     ventricular_amplitude_label.grid(row=3, column=0, pady=10, padx=10)
     ventricular_amplitude_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVIR_VA)
@@ -350,7 +350,7 @@ def open_VVIR(prev_page):
     save_button_VA = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.addVA(ventricular_amplitude_entry.get()))
     save_button_VA.grid(row=3, column=2, pady=10, padx=10)
 
-    VVIR_VPW = 0  # VVIRData.VPW
+    VVIR_VPW = VVIRData.VPW
     ventricular_pulse_width_label = customtkinter.CTkLabel(master=frame, text="Ventricular Pulse Width")
     ventricular_pulse_width_label.grid(row=4, column=0, pady=10, padx=10)
     ventricular_pulse_width_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVIR_VPW)
@@ -358,7 +358,7 @@ def open_VVIR(prev_page):
     save_button_VPW = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.addVPW(ventricular_pulse_width_entry.get()))
     save_button_VPW.grid(row=4, column=2, pady=10, padx=10)
 
-    VVIR_VRP = 0  # VVIRData.VRP
+    VVIR_VRP = VVIRData.VRP
     VRP_label = customtkinter.CTkLabel(master=frame, text="VRP")
     VRP_label.grid(row=5, column=0, pady=10, padx=10)
     VRP_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVIR_VRP)
@@ -367,23 +367,23 @@ def open_VVIR(prev_page):
     save_button_VRP.grid(row=5, column=2, pady=10, padx=10)
 
 # save button for the following few are broken
-    VVIR_VS = StringVar()
+    VVIR_VS = VVIRData.ventricularSens
     ventricular_sensitivity_label = customtkinter.CTkLabel(master=frame, text="Ventricular Sensitivity")
     ventricular_sensitivity_label.grid(row=6, column=0, pady=10, padx=10)
     ventricular_sensitivity_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVIR_VS)
     ventricular_sensitivity_entry.grid(row=6, column=1, pady=10, padx=10)
-    save_button_VS = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.add(ventricular_sensitivity_entry.get()))
+    save_button_VS = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.addSensitivity(ventricular_sensitivity_entry.get()))
     save_button_VS.grid(row=6, column=2, pady=10, padx=10)
 
-    VVIR_H = StringVar()
+    VVIR_H = VVIRData.hysteresis
     hysterisis_label = customtkinter.CTkLabel(master=frame, text="Hysterisis")
     hysterisis_label.grid(row=7, column=0, pady=10, padx=10)
     hysterisis_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVIR_H)
     hysterisis_entry.grid(row=7, column=1, pady=10, padx=10)
-    save_button_H = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.add(hysterisis_entry.get()))
+    save_button_H = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.addHysteresis(hysterisis_entry.get()))
     save_button_H.grid(row=7, column=2, pady=10, padx=10)
 
-    VVIR_RS = StringVar()
+    VVIR_RS = VVIRData.smoothing
     rate_smoothing_label = customtkinter.CTkLabel(master=frame, text="Rate Smoothing")
     rate_smoothing_label.grid(row=8, column=0, pady=10, padx=10)
     rate_smoothing_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVIR_RS)
@@ -391,36 +391,36 @@ def open_VVIR(prev_page):
     save_button_RS = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.add(rate_smoothing_label.get()))
     save_button_RS.grid(row=8, column=2, pady=10, padx=10)
 
-    VVIR_at = 0  # VVIRData.AT
+    VVIR_at = VVIRData.actThres
     at_label = customtkinter.CTkLabel(master=frame, text="Activity Threshold")
     at_label.grid(row=9, column=0, pady=10, padx=10)
     at_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVIR_at)
     at_entry.grid(row=9, column=1, pady=10, padx=10)
-    save_button_at = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.addAT(at_entry.get()))
+    save_button_at = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.addActThres(at_entry.get()))
     save_button_at.grid(row=9, column=2, pady=10, padx=10)
 
-    VVIR_reaction = 0  # VVIRData.reaction
+    VVIR_reaction = VVIRData.reactTime
     reaction_label = customtkinter.CTkLabel(master=frame, text="Reaction Time")
     reaction_label.grid(row=10, column=0, pady=10, padx=10)
     reaction_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVIR_reaction)
     reaction_entry.grid(row=10, column=1, pady=10, padx=10)
-    save_button_rt = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.addreaction(reaction_entry.get()))
+    save_button_rt = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.addReactTime(reaction_entry.get()))
     save_button_rt.grid(row=10, column=2, pady=10, padx=10)
 
-    VVIR_rf = 0  # VVIRData.RF
+    VVIR_rf = VVIRData.respFact
     rf_label = customtkinter.CTkLabel(master=frame, text="Response Factor")
     rf_label.grid(row=11, column=0, pady=10, padx=10)
     rf_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVIR_rf)
     rf_entry.grid(row=11, column=1, pady=10, padx=10)
-    save_button_rf = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.addRF(rf_entry.get()))
+    save_button_rf = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.addRespFact(rf_entry.get()))
     save_button_rf.grid(row=11, column=2, pady=10, padx=10)
 
-    VVIR_recovery = 0  # AAIRData.RECOVERY
+    VVIR_recovery = VVIRData.recTime
     recovery_label = customtkinter.CTkLabel(master=frame, text="Recovery Time")
     recovery_label.grid(row=12, column=0, pady=10, padx=10)
     recovery_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VVIR_recovery)
     recovery_entry.grid(row=12, column=1, pady=10, padx=10)
-    save_button_recovery = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.addRECOVERY(recovery_entry.get()))
+    save_button_recovery = customtkinter.CTkButton(master=frame, text="Save", command=lambda: VVIRData.addRecTime(recovery_entry.get()))
     save_button_recovery.grid(row=12, column=2, pady=10, padx=10)
 
     back_button = customtkinter.CTkButton(master=frame, text="Back", command=lambda: [VVIR_page.destroy(), open_home(VVIR_page)])
@@ -440,11 +440,11 @@ def open_AAIR(prev_page):
     frame.pack(pady=30, padx=60, fill="both", expand=True)
 
     # # Getting AAI DATA
-    # AAIRData = modes.AAIR(loginUser.getName())
-    # AAIRData.loadAAIR()
+    AAIRData = modes.AAIR(loginUser.getName())
+    AAIRData.loadAAIR()
 
     # Create entries for all programmable parameters and assign the entry text to variables
-    AAIR_url = 0  # AAIRData.URL
+    AAIR_url = AAIRData.URL
     url_label = customtkinter.CTkLabel(master=frame, text="Upper Rate Limit")
     url_label.grid(row=0, column=0, pady=10, padx=10)
     url_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAIR_url)
@@ -452,7 +452,7 @@ def open_AAIR(prev_page):
     save_button_url = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addURL(url_entry.get()))
     save_button_url.grid(row=0, column=2, pady=10, padx=10)
 
-    AAIR_lrl = 0  # AAIRData.LRL
+    AAIR_lrl = AAIRData.LRL
     lrl_label = customtkinter.CTkLabel(master=frame, text="Lower Rate Limit")
     lrl_label.grid(row=1, column=0, pady=10, padx=10)
     lrl_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAIR_lrl)
@@ -460,15 +460,15 @@ def open_AAIR(prev_page):
     save_button_lrl = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addLRL(lrl_entry.get()))
     save_button_lrl.grid(row=1, column=2, pady=10, padx=10)
 
-    AAIR_msr = 0  # AAIRData.MSR
+    AAIR_msr = AAIRData.sensorRate
     msr_label = customtkinter.CTkLabel(master=frame, text="Maximum Sensor Rate")
     msr_label.grid(row=2, column=0, pady=10, padx=10)
     msr_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAIR_msr)
     msr_entry.grid(row=2, column=1, pady=10, padx=10)
-    save_button_msr = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addMSR(msr_entry.get()))
+    save_button_msr = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addSensRate(msr_entry.get()))
     save_button_msr.grid(row=2, column=2, pady=10, padx=10)
 
-    AAIR_aa = 0  # AAIRData.AA
+    AAIR_aa = AAIRData.AA
     atrial_amplitude_label = customtkinter.CTkLabel(master=frame, text="Atrial Amplitude")
     atrial_amplitude_label.grid(row=3, column=0, pady=10, padx=10)
     atrial_amplitude_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAIR_aa)
@@ -476,7 +476,7 @@ def open_AAIR(prev_page):
     save_button_AA = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addAA(atrial_amplitude_entry.get()))
     save_button_AA.grid(row=3, column=2, pady=10, padx=10)
 
-    AAIR_APW = 0  # AAIRData.APW
+    AAIR_APW = AAIRData.APW
     atrial_pulse_width_label = customtkinter.CTkLabel(master=frame, text="Atrial Pulse Width")
     atrial_pulse_width_label.grid(row=4, column=0, pady=10, padx=10)
     atrial_pulse_width_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAIR_APW)
@@ -484,7 +484,7 @@ def open_AAIR(prev_page):
     save_button_APW = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addAPW(atrial_pulse_width_entry.get()))
     save_button_APW.grid(row=4, column=2, pady=10, padx=10)
 
-    AAIR_ARP = 0  # AAIRData.ARP
+    AAIR_ARP = AAIRData.ARP
     atrial_refactory_period_label = customtkinter.CTkLabel(master=frame, text="Atrial Refactory Period")
     atrial_refactory_period_label.grid(row=5, column=0, pady=10, padx=10)
     atrial_refactory_period_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAIR_ARP)
@@ -492,60 +492,60 @@ def open_AAIR(prev_page):
     save_button_ARP = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addARP(atrial_refactory_period_entry.get()))
     save_button_ARP.grid(row=5, column=2, pady=10, padx=10)
 
-    AAIR_AS = StringVar()
+    AAIR_AS = AAIRData.atrialSens
     atrial_sensitivity_label = customtkinter.CTkLabel(master=frame, text="Atrial Sensitivity")
     atrial_sensitivity_label.grid(row=6, column=0, pady=10, padx=10)
-    atrial_sensitivity_entry = customtkinter.CTkEntry(master=frame, placeholder_text="HERE IS A PLACEHOLDER", textvariable=AAIR_AS)
+    atrial_sensitivity_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAIR_AS)
     atrial_sensitivity_entry.grid(row=6, column=1, pady=10, padx=10)
-    save_button_AS = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addAS(atrial_sensitivity_entry.get()))
+    save_button_AS = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addSensitivity(atrial_sensitivity_entry.get()))
     save_button_AS.grid(row=6, column=2, pady=10, padx=10)
 
-    AAIR_H = StringVar()
+    AAIR_H = AAIRData.hysteresis
     hysterisis_label = customtkinter.CTkLabel(master=frame, text="Hysterisis")
     hysterisis_label.grid(row=7, column=0, pady=10, padx=10)
-    hysterisis_entry = customtkinter.CTkEntry(master=frame, placeholder_text="HERE IS A PLACEHOLDER", textvariable=AAIR_H)
+    hysterisis_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAIR_H)
     hysterisis_entry.grid(row=7, column=1, pady=10, padx=10)
-    save_button_H = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addH(hysterisis_entry.get()))
+    save_button_H = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addHysteresis(hysterisis_entry.get()))
     save_button_H.grid(row=7, column=2, pady=10, padx=10)
 
-    AAIR_RS = StringVar()
+    AAIR_RS = AAIRData.smoothing
     rate_smoothing_label = customtkinter.CTkLabel(master=frame, text="Rate Smoothing")
     rate_smoothing_label.grid(row=8, column=0, pady=10, padx=10)
-    rate_smoothing_entry = customtkinter.CTkEntry(master=frame, placeholder_text="HERE IS A PLACEHOLDER", textvariable=AAIR_RS)
+    rate_smoothing_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAIR_RS)
     rate_smoothing_entry.grid(row=8, column=1, pady=10, padx=10)
-    save_button_RS = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addRS(rate_smoothing_entry.get()))
+    save_button_RS = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addSmoothing(rate_smoothing_entry.get()))
     save_button_RS.grid(row=8, column=2, pady=10, padx=10)
 
-    AAIR_at = 0  # AAIRData.AT
+    AAIR_at = AAIRData.actThres
     at_label = customtkinter.CTkLabel(master=frame, text="Activity Threshold")
     at_label.grid(row=9, column=0, pady=10, padx=10)
     at_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAIR_at)
     at_entry.grid(row=9, column=1, pady=10, padx=10)
-    save_button_at = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addAT(at_entry.get()))
+    save_button_at = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addActThres(at_entry.get()))
     save_button_at.grid(row=9, column=2, pady=10, padx=10)
 
-    AAIR_reaction = 0  # AAIRData.reaction
+    AAIR_reaction = AAIRData.reactTime
     reaction_label = customtkinter.CTkLabel(master=frame, text="Reaction Time")
     reaction_label.grid(row=10, column=0, pady=10, padx=10)
     reaction_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAIR_reaction)
     reaction_entry.grid(row=10, column=1, pady=10, padx=10)
-    save_button_rt = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addreaction(reaction_entry.get()))
+    save_button_rt = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addReactTime(reaction_entry.get()))
     save_button_rt.grid(row=10, column=2, pady=10, padx=10)
 
-    AAIR_rf = 0  # AAIRData.RF
+    AAIR_rf = AAIRData.respFact
     rf_label = customtkinter.CTkLabel(master=frame, text="Response Factor")
     rf_label.grid(row=11, column=0, pady=10, padx=10)
     rf_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAIR_rf)
     rf_entry.grid(row=11, column=1, pady=10, padx=10)
-    save_button_rf = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addRF(rf_entry.get()))
+    save_button_rf = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addRespFact(rf_entry.get()))
     save_button_rf.grid(row=11, column=2, pady=10, padx=10)
 
-    AAIR_recovery = 0  # AAIRData.RECOVERY
+    AAIR_recovery = AAIRData.recTime
     recovery_label = customtkinter.CTkLabel(master=frame, text="Recovery Time")
     recovery_label.grid(row=12, column=0, pady=10, padx=10)
     recovery_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AAIR_recovery)
     recovery_entry.grid(row=12, column=1, pady=10, padx=10)
-    save_button_recovery = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addRECOVERY(recovery_entry.get()))
+    save_button_recovery = customtkinter.CTkButton(master=frame, text="Save", command=lambda: AAIRData.addRecTime(recovery_entry.get()))
     save_button_recovery.grid(row=12, column=2, pady=10, padx=10)
 
     back_button = customtkinter.CTkButton(master=frame, text="Back", command=lambda: [AAIR_page.destroy(), open_home(AAIR_page)])
@@ -564,11 +564,11 @@ def open_VOOR(prev_page):
     frame = customtkinter.CTkFrame(master=VOOR_page)
     frame.pack(pady=30, padx=60, fill="both", expand=True)
 
-    #VOORData = modes.VOOR(loginUser.getName())
-    #VOORData.loadVOOR()
+    VOORData = modes.VOOR(loginUser.getName())
+    VOORData.loadVOOR()
 
     #Create entries and labels for all programmable parameters and assign the entry text to variables
-    VOOR_url = 0 #VOORData.URL
+    VOOR_url = VOORData.URL
     url_label = customtkinter.CTkLabel(master=frame,text="Upper Rate Limit")
     url_label.grid(row = 0,column = 0, pady=10, padx=10)
     url_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_url) #User input gets saved to this variable
@@ -576,7 +576,7 @@ def open_VOOR(prev_page):
     save_button_url = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addURL(url_entry.get())) #Command should call corresponding function to add value, pass in the user input variable
     save_button_url.grid(row = 0,column = 2, pady=10, padx=10)
 
-    VOOR_lrl = 0 #VOORData.LRL
+    VOOR_lrl = VOORData.LRL
     lrl_label = customtkinter.CTkLabel(master=frame,text="Lower Rate Limit")
     lrl_label.grid(row = 1,column = 0, pady=10, padx=10)
     lrl_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_lrl)
@@ -584,15 +584,15 @@ def open_VOOR(prev_page):
     save_button_lrl = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addLRL(lrl_entry.get()))
     save_button_lrl.grid(row = 1,column = 2, pady=10, padx=10)
 
-    VOOR_msr = 0 #VOORData.MSR
+    VOOR_msr = VOORData.sensorRate
     msr_label = customtkinter.CTkLabel(master=frame,text="Maximum Sensor Rate")
     msr_label.grid(row = 2,column = 0, pady=10, padx=10)
     msr_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_msr)
     msr_entry.grid(row = 2,column = 1, pady=10, padx=10)
-    save_button_msr = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addMSR(msr_entry.get()))
+    save_button_msr = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addSensRate(msr_entry.get()))
     save_button_msr.grid(row = 2,column = 2, pady=10, padx=10)
 
-    VOOR_VA = 0 #VOORData.VA
+    VOOR_VA = VOORData.VA
     ventricular_amplitude_label = customtkinter.CTkLabel(master=frame,text="Ventricular Amplitude")
     ventricular_amplitude_label.grid(row = 3,column = 0, pady=10, padx=10)
     ventricular_amplitude_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_VA)
@@ -600,7 +600,7 @@ def open_VOOR(prev_page):
     save_button_VA = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addVA(ventricular_amplitude_entry.get()))
     save_button_VA.grid(row = 3,column = 2, pady=10, padx=10)
 
-    VOOR_VPW = 0 #VOORData.VPW
+    VOOR_VPW = VOORData.VPW
     ventricular_pulse_width_label = customtkinter.CTkLabel(master=frame,text="Ventricular Pulse Width")
     ventricular_pulse_width_label.grid(row = 4,column = 0, pady=10, padx=10)
     ventricular_pulse_width_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_VPW)
@@ -608,36 +608,36 @@ def open_VOOR(prev_page):
     save_button_VPW = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addVPW(ventricular_pulse_width_entry.get()))
     save_button_VPW.grid(row = 4,column = 2, pady=10, padx=10)
 
-    VOOR_at = 0 #VOORData.AT
+    VOOR_at = VOORData.actThres
     at_label = customtkinter.CTkLabel(master=frame,text="Activity Threshold")
     at_label.grid(row = 5,column = 0, pady=10, padx=10)
     at_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_at)
     at_entry.grid(row = 5,column = 1, pady=10, padx=10)
-    save_button_at = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addAT(at_entry.get()))
+    save_button_at = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addActThres(at_entry.get()))
     save_button_at.grid(row = 5,column = 2, pady=10, padx=10)
 
-    VOOR_reaction = 0 #VOORData.reaction
+    VOOR_reaction = VOORData.reactTime
     reaction_label = customtkinter.CTkLabel(master=frame,text="Reaction Time")
     reaction_label.grid(row = 6,column = 0, pady=10, padx=10)
     reaction_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_reaction)
     reaction_entry.grid(row = 6,column = 1, pady=10, padx=10)
-    save_button_rt = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addreaction(reaction_entry.get()))
+    save_button_rt = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addReactTime(reaction_entry.get()))
     save_button_rt.grid(row = 6,column = 2, pady=10, padx=10)
 
-    VOOR_rf = 0 #VOORData.RF
+    VOOR_rf = VOORData.respFact
     rf_label = customtkinter.CTkLabel(master=frame,text="Response Factor")
     rf_label.grid(row = 7,column = 0, pady=10, padx=10)
     rf_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_rf)
     rf_entry.grid(row = 7,column = 1, pady=10, padx=10)
-    save_button_rf = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addRF(rf_entry.get()))
+    save_button_rf = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addRespFact(rf_entry.get()))
     save_button_rf.grid(row = 7,column = 2, pady=10, padx=10)
 
-    VOOR_recovery = 0 #VOORData.RECOVERY
+    VOOR_recovery = VOORData.recTime
     recovery_label = customtkinter.CTkLabel(master=frame,text="Recovery Time")
     recovery_label.grid(row = 8,column = 0, pady=10, padx=10)
     recovery_entry = customtkinter.CTkEntry(master=frame, placeholder_text=VOOR_recovery)
     recovery_entry.grid(row = 8,column = 1, pady=10, padx=10)
-    save_button_recovery = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addRECOVERY(recovery_entry.get()))
+    save_button_recovery = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : VOORData.addRecTime(recovery_entry.get()))
     save_button_recovery.grid(row = 8,column = 2, pady=10, padx=10)
 
     back_button = customtkinter.CTkButton(master=frame, text = "Back", command = lambda : [VOOR_page.destroy(),open_home(VOOR_page)])
@@ -655,11 +655,11 @@ def open_AOOR(prev_page):
     frame = customtkinter.CTkFrame(master=AOOR_page)
     frame.pack(pady=30, padx=60, fill="both", expand=True)
 
-    #VOORData = modes.VOOR(loginUser.getName())
-    #VOORData.loadVOOR()
+    AOORData = modes.AOOR(loginUser.getName())
+    AOORData.loadAOOR()
 
     #Create entries and labels for all programmable parameters and assign the entry text to variables
-    AOOR_url = 0 #AOORData.URL
+    AOOR_url = AOORData.URL
     url_label = customtkinter.CTkLabel(master=frame,text="Upper Rate Limit")
     url_label.grid(row = 0,column = 0, pady=10, padx=10)
     url_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_url) #User input gets saved to this variable
@@ -667,7 +667,7 @@ def open_AOOR(prev_page):
     save_button_url = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addURL(url_entry.get())) #Command should call corresponding function to add value, pass in the user input variable
     save_button_url.grid(row = 0,column = 2, pady=10, padx=10)
 
-    AOOR_lrl = 0 #AOORData.LRL
+    AOOR_lrl = AOORData.LRL
     lrl_label = customtkinter.CTkLabel(master=frame,text="Lower Rate Limit")
     lrl_label.grid(row = 1,column = 0, pady=10, padx=10)
     lrl_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_lrl)
@@ -675,15 +675,15 @@ def open_AOOR(prev_page):
     save_button_lrl = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addLRL(lrl_entry.get()))
     save_button_lrl.grid(row = 1,column = 2, pady=10, padx=10)
 
-    AOOR_msr = 0 #AOORData.MSR
+    AOOR_msr = AOORData.sensorRate
     msr_label = customtkinter.CTkLabel(master=frame,text="Maximum Sensor Rate")
     msr_label.grid(row = 2,column = 0, pady=10, padx=10)
     msr_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_msr)
     msr_entry.grid(row = 2,column = 1, pady=10, padx=10)
-    save_button_msr = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addMSR(msr_entry.get()))
+    save_button_msr = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addSensRate(msr_entry.get()))
     save_button_msr.grid(row = 2,column = 2, pady=10, padx=10)
 
-    AOOR_AA = 0 #AOORData.AA
+    AOOR_AA = AOORData.AA 
     atrial_amplitude_label = customtkinter.CTkLabel(master=frame,text="Atrial Amplitude")
     atrial_amplitude_label.grid(row = 3, column = 0, pady=10, padx=10)
     atrial_amplitude_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_AA)
@@ -691,7 +691,7 @@ def open_AOOR(prev_page):
     save_button_AA = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addAA(atrial_amplitude_entry.get()))
     save_button_AA.grid(row = 3, column = 2, pady=10, padx=10)
 
-    AOOR_APW = 0 # AOORData.APW
+    AOOR_APW = AOORData.APW
     atrial_pulse_width_label = customtkinter.CTkLabel(master=frame,text="Atrial Pulse Width")
     atrial_pulse_width_label.grid(row = 4, column = 0, pady=10, padx=10)
     atrial_pulse_width_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_APW)
@@ -699,36 +699,36 @@ def open_AOOR(prev_page):
     save_button_APW = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addAPW(atrial_pulse_width_entry.get()))
     save_button_APW.grid(row = 4, column = 2, pady=10, padx=10)
 
-    AOOR_at = 0 #AOORData.AT
+    AOOR_at = AOORData.actThres
     at_label = customtkinter.CTkLabel(master=frame,text="Activity Threshold")
     at_label.grid(row = 5,column = 0, pady=10, padx=10)
     at_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_at)
     at_entry.grid(row = 5,column = 1, pady=10, padx=10)
-    save_button_at = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addAT(at_entry.get()))
+    save_button_at = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addActThres(at_entry.get()))
     save_button_at.grid(row = 5,column = 2, pady=10, padx=10)
 
-    AOOR_reaction = 0 #VOORData.reaction
+    AOOR_reaction = AOORData.reactTime
     reaction_label = customtkinter.CTkLabel(master=frame,text="Reaction Time")
     reaction_label.grid(row = 6,column = 0, pady=10, padx=10)
     reaction_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_reaction)
     reaction_entry.grid(row = 6,column = 1, pady=10, padx=10)
-    save_button_rt = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addreaction(reaction_entry.get()))
+    save_button_rt = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addReactTime(reaction_entry.get()))
     save_button_rt.grid(row = 6,column = 2, pady=10, padx=10)
 
-    AOOR_rf = 0 #VOORData.RF
+    AOOR_rf = AOORData.respFact
     rf_label = customtkinter.CTkLabel(master=frame,text="Response Factor")
     rf_label.grid(row = 7,column = 0, pady=10, padx=10)
     rf_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_rf)
     rf_entry.grid(row = 7,column = 1, pady=10, padx=10)
-    save_button_rf = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addRF(rf_entry.get()))
+    save_button_rf = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addRespFact(rf_entry.get()))
     save_button_rf.grid(row = 7,column = 2, pady=10, padx=10)
 
-    AOOR_recovery = 0 #VOORData.RECOVERY
+    AOOR_recovery = AOORData.recTime
     recovery_label = customtkinter.CTkLabel(master=frame,text="Recovery Time")
     recovery_label.grid(row = 8,column = 0, pady=10, padx=10)
     recovery_entry = customtkinter.CTkEntry(master=frame, placeholder_text=AOOR_recovery)
     recovery_entry.grid(row = 8,column = 1, pady=10, padx=10)
-    save_button_recovery = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addRECOVERY(recovery_entry.get()))
+    save_button_recovery = customtkinter.CTkButton(master=frame, text = "Save", command = lambda : AOORData.addRecTime(recovery_entry.get()))
     save_button_recovery.grid(row = 8,column = 2, pady=10, padx=10)
 
     back_button = customtkinter.CTkButton(master=frame, text = "Back", command = lambda : [AOOR_page.destroy(),open_home(AOOR_page)])
@@ -937,7 +937,7 @@ def welcomePage():
     global pixel_heart
     global heart_label
 
-    pic = Image.open(r"C:\Users\ali raza\OneDrive\Documents\Projects\pacemaker\3K04_Project\DCM\heart.png")
+    pic = Image.open(r"DCM\heart.png")
     heart = pic.resize((50,50), Image.ANTIALIAS)
     small_heart = pic.resize((20,20), Image.ANTIALIAS)
     small_pixel_heart = ImageTk.PhotoImage(small_heart)

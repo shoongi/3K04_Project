@@ -4,7 +4,7 @@ import struct
 
 
 # ----------- USER DEFINED CONSTANTS ------------ #
-SERIALPORT  = 'COM10'
+SERIALPORT  = 'COM1'
 BAUDRATE    = 115200
 DATASIZE    = 8
 TIMEOUT     = 1
@@ -12,12 +12,7 @@ TIMEOUT     = 1
 
 def initializeSerial():
 #   Initialize serial port with defined parameters
-    ser = serial.Serial(port        = SERIALPORT, 
-                        baudrate    = BAUDRATE, 
-                        bytesize    = DATASIZE, 
-                        timeout     = TIMEOUT, 
-                        parity      = 'N',
-                        stopbits    = serial.STOPBITS_ONE)
+    ser = serial.Serial(port = SERIALPORT, baudrate = BAUDRATE, bytesize = DATASIZE, timeout = TIMEOUT, parity = 'N',stopbits = serial.STOPBITS_ONE)
     return ser
 
 def deinitializeSerial(ser):
