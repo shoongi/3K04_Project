@@ -233,18 +233,17 @@ def addAPW(self,inputAPW):
         self.APW = APW
         print("Added APW")
         return True, "Good"
-    elif (APW >= 0.1 and APW <= 1.9):
-        if ((APW / 0.1) == int (APW / 0.1)):
+    elif (APW >= 1 and APW <= 30):
+        if ((APW / 1) == int (APW / 1)):
             self.APW = APW
             print("Added APW")
             return True, "Good"
         else:
-            print("APW must be increment of 0.1")
-            return False, "APW must be increment of 0.1"
+            print("APW must be increment of 1")
+            return False, "APW must be increment of 1"
     else:
-        print("APW must be within range of 0.05 or 0.1-1.9")
-        return False, "APW must be within range of 0.05 or 0.1-1.9"
-
+        print("APW must be within range of 1-30")
+        return False, "APW must be within range of 1-30"
 def addARP(self,inputARP):
     ARP = int(inputARP)
     if (ARP >= 150 and ARP <= 500):
@@ -307,17 +306,17 @@ def addVPW(self,inputVPW):
         self.VPW = VPW
         print("Added VPW")
         return True, "Good"
-    elif (VPW >= 0.1 and VPW <= 1.9):
+    elif (VPW >= 1 and VPW <= 30):
         if (True):
             self.VPW = VPW
             print("Added VPW")
             return True, "Good"
         else:
-            print("VPW must be increment of 0.1")
-            return False, "VPW must be increment of 0.1"
+            print("VPW must be increment of 1")
+            return False, "VPW must be increment of 1"
     else:
-        print("VPW must be within range of 0.05 or 0.1-1.9")
-        return False, "VPW must be within range of 0.05 or 0.1-1.9"
+        print("VPW must be within range of 1-30")
+        return False, "VPW must be within range of 1-30"
 
 def addVRP(self,inputVRP):
     VRP = int(inputVRP)

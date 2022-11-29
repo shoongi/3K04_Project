@@ -4,6 +4,7 @@ import serial_comm
 import time
 import serial
 
+NUM_BYTES = 34
 
 class AOO:
     def __init__(self,name):
@@ -97,7 +98,7 @@ class AOO:
             ser.write(transmit[0])
 
             time.sleep(0.05)
-            data = ser.read(34)
+            data = ser.read(NUM_BYTES)
             
             receive = serial_comm.unpackReceiveData(data)
             time.sleep(0.01)
@@ -201,7 +202,7 @@ class VOO:
             ser.write(transmit[0])
 
             time.sleep(0.05)
-            data = ser.read(34)
+            data = ser.read(NUM_BYTES)
 
             receive = serial_comm.unpackReceiveData(data)
             time.sleep(0.01)
@@ -365,26 +366,26 @@ class AAI:
         print(self.AAIData)
         self.userData.saveParam(self.AAIData)
 
-        """
+
         self.loadAAI()
 
         ser = serial_comm.initializeSerial()
         checkCondition = False
 
         while(not checkCondition):
-            transmit = serial_comm.packTransmitData(int(self.LRL), int(self.URL), 0, 0, 2, 330, float(self.AA), float(self.APW), 2, float(self.ARP), 1, 3)
+            transmit = serial_comm.packTransmitData(int(self.LRL), int(self.URL), 0, 0, 2, 330, float(self.AA), float(self.APW), 2, int(self.ARP), 1, 3)
             time.sleep(0.01)
             ser.write(transmit[0])
 
             time.sleep(0.05)
-            data = ser.read(34)
+            data = ser.read(NUM_BYTES)
             
             receive = serial_comm.unpackReceiveData(data)
             time.sleep(0.01)
 
             checkCondition  = serial_comm.compareChecksum(transmit[1], receive)
         serial_comm.deinitializeSerial(ser)
-        """
+
 
 ######################################################################################################################################
 ######################################################################################################################################
@@ -540,26 +541,26 @@ class AOOR:
         print(self.AOORData)
         self.userData.saveParam(self.AOORData)
 
-        """
+
         self.loadAOOR()
 
-        ser = serial_comm.initializeSerial()
-        checkCondition = False
+        # ser = serial_comm.initializeSerial()
+        # checkCondition = False
 
-        while(not checkCondition):
-            transmit = serial_comm.packTransmitData(int(self.LRL), int(self.URL), 0, 0, 2, 330, float(self.AA), float(self.APW), 2, 120, 1, 3)
-            time.sleep(0.01)
-            ser.write(transmit[0])
+        # while(not checkCondition):
+        #     transmit = serial_comm.packTransmitData(int(self.LRL), int(self.URL), 0, 0, 2, 330, float(self.AA), float(self.APW), 2, 120, 1, 3)
+        #     time.sleep(0.01)
+        #     ser.write(transmit[0])
 
-            time.sleep(0.05)
-            data = ser.read(34)
+        #     time.sleep(0.05)
+        #     data = ser.read(34)
             
-            receive = serial_comm.unpackReceiveData(data)
-            time.sleep(0.01)
+        #     receive = serial_comm.unpackReceiveData(data)
+        #     time.sleep(0.01)
 
-            checkCondition  = serial_comm.compareChecksum(transmit[1], receive)
-        serial_comm.deinitializeSerial(ser)
-        """
+        #     checkCondition  = serial_comm.compareChecksum(transmit[1], receive)
+        # serial_comm.deinitializeSerial(ser)
+
 
 ####################################################################################################################################
 ####################################################################################################################################
@@ -703,26 +704,25 @@ class VVI:
         print(self.VVIData)
         self.userData.saveParam(self.VVIData)
 
-        """
         self.loadVVI()
 
         ser = serial_comm.initializeSerial()
         checkCondition = False
 
         while(not checkCondition):
-            transmit = serial_comm.packTransmitData(int(self.LRL), int(self.URL), float(self.VA), float(self.VPW), 2, float(self.VRP), 5, 2, 2, 250, 1, 5)
+            transmit = serial_comm.packTransmitData(int(self.LRL), int(self.URL), float(self.VA), float(self.VPW), 2, int(self.VRP), 5, 2, 2, 250, 1, 5)
             time.sleep(0.01)
             ser.write(transmit[0])
 
             time.sleep(0.05)
-            data = ser.read(34)
+            data = ser.read(NUM_BYTES)
             
             receive = serial_comm.unpackReceiveData(data)
             time.sleep(0.01)
 
             checkCondition  = serial_comm.compareChecksum(transmit[1], receive)
         serial_comm.deinitializeSerial(ser)
-        """
+ 
 
 #####################################################################################################################################
 #####################################################################################################################################
@@ -1122,26 +1122,26 @@ class AAIR:
         print(self.AAIRData)
         self.userData.saveParam(self.AAIRData)
 
-        """
+        
         self.loadAAIR()
 
-        ser = serial_comm.initializeSerial()
-        checkCondition = False
+        # ser = serial_comm.initializeSerial()
+        # checkCondition = False
 
-        while(not checkCondition):
-            transmit = serial_comm.packTransmitData(int(self.LRL), int(self.URL), 0, 0, 2, 330, float(self.AA), float(self.APW), 2, 120, 1, 3)
-            time.sleep(0.01)
-            ser.write(transmit[0])
+        # while(not checkCondition):
+        #     transmit = serial_comm.packTransmitData(int(self.LRL), int(self.URL), 0, 0, 2, 330, float(self.AA), float(self.APW), 2, int(self.ARP), 1, 3)
+        #     time.sleep(0.01)
+        #     ser.write(transmit[0])
 
-            time.sleep(0.05)
-            data = ser.read(34)
+        #     time.sleep(0.05)
+        #     data = ser.read(34)
             
-            receive = serial_comm.unpackReceiveData(data)
-            time.sleep(0.01)
+        #     receive = serial_comm.unpackReceiveData(data)
+        #     time.sleep(0.01)
 
-            checkCondition  = serial_comm.compareChecksum(transmit[1], receive)
-        serial_comm.deinitializeSerial(ser)
-        """
+        #     checkCondition  = serial_comm.compareChecksum(transmit[1], receive)
+        # serial_comm.deinitializeSerial(ser)
+       
 
 ###############################################################################################################################        
 ###############################################################################################################################
@@ -1353,23 +1353,21 @@ class VVIR:
         print(self.VVIRData)
         self.userData.saveParam(self.VVIRData)
 
-        """
         self.loadVVIR()
 
-        ser = serial_comm.initializeSerial()
-        checkCondition = False
+        # ser = serial_comm.initializeSerial()
+        # checkCondition = False
 
-        while(not checkCondition):
-            transmit = serial_comm.packTransmitData(int(self.LRL), int(self.URL), float(self.VA), float(self.VPW), 2, 250, 5, 2, 2, 250, 1, 5)
-            time.sleep(0.01)
-            ser.write(transmit[0])
+        # while(not checkCondition):
+        #     transmit = serial_comm.packTransmitData(int(self.LRL), int(self.URL), float(self.VA), float(self.VPW), 2, int(self.VRP), 5, 2, 2, 250, 1, 5)
+        #     time.sleep(0.01)
+        #     ser.write(transmit[0])
 
-            time.sleep(0.05)
-            data = ser.read(34)
+        #     time.sleep(0.05)
+        #     data = ser.read(34)
             
-            receive = serial_comm.unpackReceiveData(data)
-            time.sleep(0.01)
+        #     receive = serial_comm.unpackReceiveData(data)
+        #     time.sleep(0.01)
 
-            checkCondition  = serial_comm.compareChecksum(transmit[1], receive)
-        serial_comm.deinitializeSerial(ser)
-        """
+        #     checkCondition  = serial_comm.compareChecksum(transmit[1], receive)
+        # serial_comm.deinitializeSerial(ser)

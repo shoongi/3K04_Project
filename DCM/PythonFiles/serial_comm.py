@@ -4,7 +4,7 @@ import struct
 
 
 # ----------- USER DEFINED CONSTANTS ------------ #
-SERIALPORT  = 'COM1'
+SERIALPORT  = 'COM10'
 BAUDRATE    = 115200
 DATASIZE    = 8
 TIMEOUT     = 1
@@ -107,21 +107,18 @@ def main():
     arp = 250
     pvarp = 1
     mode = 4
+    
+    count = 0 
+    data = ser.read(4000)
+    atr = [None] * 1000
 
+    for i in range(0,4000,4):
+        atr[count] = struct.unpack('f', data[i:i+4])[0]
 
-    checkCondition = False
+        count = count+1
+    for i in range(0, 1000):
+        print(atr[i])
 
-    while(not checkCondition):
-        transmit = packTransmitData(lrl, url, vamp, vpw, vsensitivity, vrp, aamp, apw, asensitivity, arp, pvarp, mode)
-        time.sleep(0.01)
-        ser.write(transmit[0])
-
-        time.sleep(0.05)
-        receive = unpackReceiveData(ser.read(33))
-        time.sleep(0.01)
-        
-
-        checkCondition  = compareChecksum(transmit[1], receive)
 
     # while(1):
 
