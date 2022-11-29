@@ -1188,9 +1188,9 @@ class VVIR:
                 userDict[self.name]["VVIR"] = {}
                 userDict[self.name]["VVIR"]["LRL"] = self.LRL
                 userDict[self.name]["VVIR"]["URL"] = self.URL
-                userDict[self.name]["VVIR"]["AA"] = self.VA
-                userDict[self.name]["VVIR"]["APW"] = self.VPW
-                userDict[self.name]["VVIR"]["ARP"] = self.VRP
+                userDict[self.name]["VVIR"]["VA"] = self.VA
+                userDict[self.name]["VVIR"]["VPW"] = self.VPW
+                userDict[self.name]["VVIR"]["VRP"] = self.VRP
                 userDict[self.name]["VVIR"]["Sensitivity"] = self.ventricularSens 
                 userDict[self.name]["VVIR"]["Hysteresis"] = self.hysteresis 
                 userDict[self.name]["VVIR"]["Smoothing"] = self.smoothing 
@@ -1204,9 +1204,9 @@ class VVIR:
             userDict[self.name]["VVIR"] = {}
             userDict[self.name]["VVIR"]["LRL"] = self.LRL
             userDict[self.name]["VVIR"]["URL"] = self.URL
-            userDict[self.name]["VVIR"]["AA"] = self.VA
-            userDict[self.name]["VVIR"]["APW"] = self.VPW
-            userDict[self.name]["VVIR"]["ARP"] = self.VRP
+            userDict[self.name]["VVIR"]["VA"] = self.VA
+            userDict[self.name]["VVIR"]["VPW"] = self.VPW
+            userDict[self.name]["VVIR"]["VRP"] = self.VRP
             userDict[self.name]["VVIR"]["Sensitivity"] = self.ventricularSens 
             userDict[self.name]["VVIR"]["Hysteresis"] = self.hysteresis 
             userDict[self.name]["VVIR"]["Smoothing"] = self.smoothing 
@@ -1257,7 +1257,7 @@ class VVIR:
         acceptable, comment = parameters.addVRP(self,inputVRP)
 
         if (acceptable == True):
-            self.URL = inputVRP
+            self.VRP = inputVRP
             self.addVVIR()
         else:
             print(comment)
