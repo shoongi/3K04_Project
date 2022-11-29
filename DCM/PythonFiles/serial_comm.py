@@ -12,7 +12,7 @@ TIMEOUT     = 1
 
 def initializeSerial():
 #   Initialize serial port with defined parameters
-    ser = serial.Serial(port = SERIALPORT, baudrate = BAUDRATE, bytesize = DATASIZE, timeout = TIMEOUT, parity = 'N', stopbits = serial.STOPBITS_ONE)
+    ser = serial.Serial(port = SERIALPORT, baudrate = BAUDRATE, bytesize = DATASIZE, timeout = TIMEOUT, parity = 'N',stopbits = serial.STOPBITS_ONE)
     return ser
 
 def deinitializeSerial(ser):
@@ -107,21 +107,18 @@ def main():
     arp = 250
     pvarp = 1
     mode = 4
+    
+    count = 0 
+    data = ser.read(4000)
+    atr = [None] * 1000
 
+    for i in range(0,4000,4):
+        atr[count] = struct.unpack('f', data[i:i+4])[0]
 
-    checkCondition = False
+        count = count+1
+    for i in range(0, 1000):
+        print(atr[i])
 
-    while(not checkCondition):
-        transmit = packTransmitData(lrl, url, vamp, vpw, vsensitivity, vrp, aamp, apw, asensitivity, arp, pvarp, mode)
-        time.sleep(0.01)
-        ser.write(transmit[0])
-
-        time.sleep(0.05)
-        receive = unpackReceiveData(ser.read(33))
-        time.sleep(0.01)
-        
-
-        checkCondition  = compareChecksum(transmit[1], receive)
 
     # while(1):
 
